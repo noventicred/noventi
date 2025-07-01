@@ -9,6 +9,8 @@ import NotFound from "./pages/NotFound";
 import LoadingAnalysis from "./components/LoadingAnalysis";
 import LoanApproved from "./components/LoanApproved";
 import ConfirmationScreen from "./components/ConfirmationScreen";
+import BankValidationLoading from "./components/BankValidationLoading";
+import IOFPayment from "./components/IOFPayment";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +25,8 @@ const App = () => (
           <Route path="/analise" element={<LoadingAnalysis />} />
           <Route path="/aprovado" element={<LoanApproved />} />
           <Route path="/confirmacao" element={<ConfirmationScreen />} />
+          <Route path="/validacao-bancaria" element={<BankValidationLoading />} />
+          <Route path="/pagamento-iof" element={<IOFPayment />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
