@@ -1,7 +1,6 @@
-
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Unlock, AlertTriangle, CheckCircle } from 'lucide-react';
+import { Lock, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { formatCurrency } from '@/utils/formatters';
 
@@ -35,39 +34,39 @@ const IOFPayment = () => {
           <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8">
             
             {/* Cabeçalho de sucesso */}
-            <div className="text-center mb-6 sm:mb-8">
-              <div className="w-16 h-16 bg-green-100 rounded-full mx-auto flex items-center justify-center mb-4">
-                <CheckCircle className="w-8 h-8 text-green-600" />
+            <div className="text-center mb-8">
+              <div className="w-16 h-16 bg-green-100 rounded-full mx-auto flex items-center justify-center mb-6">
+                <CheckCircle2 className="w-8 h-8 text-green-600" />
               </div>
               
-              <h1 className="text-xl sm:text-2xl font-bold text-green-dark mb-3">
+              <h1 className="text-2xl sm:text-3xl font-bold text-green-dark mb-4">
                 🎉 Seu valor já está disponível para transferência!
               </h1>
               
-              <p className="text-base sm:text-lg text-gray-700 leading-relaxed max-w-lg mx-auto">
+              <p className="text-lg text-gray-700 leading-relaxed max-w-lg mx-auto">
                 O seu empréstimo foi aprovado e o valor já está reservado para sua conta.
               </p>
             </div>
 
             {/* Seção principal do IOF */}
-            <div className="space-y-6">
+            <div className="space-y-8">
               
               {/* Explicação do IOF */}
-              <div className="bg-blue-50 rounded-xl p-4 sm:p-6">
-                <div className="flex items-start gap-3 sm:gap-4">
-                  <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 mt-1 flex-shrink-0" />
-                  <div className="space-y-3 sm:space-y-4">
+              <div className="bg-blue-50 rounded-xl p-6">
+                <div className="flex items-start gap-4">
+                  <AlertCircle className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
+                  <div className="space-y-4">
                     <div>
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">
+                      <h3 className="text-xl font-semibold text-gray-800 mb-3">
                         Última etapa para liberação
                       </h3>
-                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                      <p className="text-base text-gray-700 leading-relaxed mb-4">
                         No entanto, falta apenas uma última etapa: o pagamento do Imposto sobre Operações Financeiras (IOF).
                       </p>
                     </div>
                     
                     <div>
-                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                      <p className="text-base text-gray-700 leading-relaxed">
                         Conforme exigência legal do Banco Central, é necessário quitar esse imposto para que o valor seja liberado 100% e transferido imediatamente para sua conta.
                       </p>
                     </div>
@@ -76,25 +75,25 @@ const IOFPayment = () => {
               </div>
 
               {/* Resumo do empréstimo */}
-              <div className="bg-green-50 rounded-xl p-4 sm:p-6">
-                <h3 className="text-base sm:text-lg font-semibold text-green-dark mb-4">
+              <div className="bg-green-50 rounded-xl p-6">
+                <h3 className="text-xl font-semibold text-green-dark mb-6">
                   Resumo do seu empréstimo
                 </h3>
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm sm:text-base text-green-dark">Valor aprovado:</span>
-                    <span className="text-sm sm:text-base font-bold text-green-dark">{formatCurrency(loanValue || 0)}</span>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center py-2">
+                    <span className="text-base text-green-dark">Valor aprovado:</span>
+                    <span className="text-base font-bold text-green-dark">{formatCurrency(loanValue || 0)}</span>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm sm:text-base text-green-dark">Valor total (com juros):</span>
-                    <span className="text-sm sm:text-base font-bold text-green-dark">{formatCurrency(totalLoanValue)}</span>
+                  <div className="flex justify-between items-center py-2">
+                    <span className="text-base text-green-dark">Valor total (com juros):</span>
+                    <span className="text-base font-bold text-green-dark">{formatCurrency(totalLoanValue)}</span>
                   </div>
-                  <div className="border-t border-green-200 pt-3">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm sm:text-base text-green-dark">IOF (0,38% do total):</span>
-                      <span className="text-base sm:text-lg font-bold text-red-600">{formatCurrency(iofValue)}</span>
+                  <div className="border-t border-green-200 pt-4">
+                    <div className="flex justify-between items-center py-2">
+                      <span className="text-base text-green-dark">IOF (0,38% do total):</span>
+                      <span className="text-lg font-bold text-red-600">{formatCurrency(iofValue)}</span>
                     </div>
-                    <p className="text-xs sm:text-sm text-green-700 mt-2">
+                    <p className="text-sm text-green-700 mt-3">
                       O IOF é um tributo obrigatório em operações de crédito no Brasil.
                     </p>
                   </div>
@@ -102,31 +101,27 @@ const IOFPayment = () => {
               </div>
 
               {/* Informação de tempo */}
-              <div className="bg-green-100 rounded-lg p-3 sm:p-4 text-center">
-                <p className="text-sm sm:text-base text-green-700 font-medium">
+              <div className="bg-green-100 rounded-lg p-4 text-center">
+                <p className="text-base text-green-700 font-medium">
                   ⏱️ Assim que o pagamento for confirmado, a transferência será feita em até 3 horas
                 </p>
               </div>
 
             </div>
 
-            {/* Botão de pagamento - Melhor posicionamento */}
-            <div className="mt-8 space-y-4">
-              <div className="flex justify-center">
-                <Button 
-                  className="bg-green-primary hover:bg-green-dark text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 w-full max-w-md"
-                  size="lg"
-                >
-                  <Unlock className="w-5 h-5 mr-2" />
-                  Pagar {formatCurrency(iofValue)} e liberar depósito
-                </Button>
-              </div>
+            {/* Botão de pagamento */}
+            <div className="mt-10 flex flex-col items-center space-y-4">
+              <Button 
+                className="bg-green-primary hover:bg-green-dark text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 w-full max-w-sm"
+                size="lg"
+              >
+                <Lock className="w-5 h-5 mr-3" />
+                Pagar {formatCurrency(iofValue)} e liberar depósito
+              </Button>
               
-              <div className="text-center">
-                <p className="text-xs sm:text-sm text-gray-500">
-                  🔒 Pagamento 100% seguro e protegido
-                </p>
-              </div>
+              <p className="text-sm text-gray-500 text-center">
+                🔒 Pagamento 100% seguro e protegido
+              </p>
             </div>
 
           </div>

@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { CheckCircle, Clock, Shield, CreditCard } from "lucide-react";
+import { CheckCircle2, Clock, Shield, CreditCard } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -21,7 +21,7 @@ const Hero = () => {
 
             <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4">
               <div className="flex items-center space-x-2 bg-white/10 rounded-full px-3 sm:px-4 py-2">
-                <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
                 <span className="font-medium text-sm sm:text-base">Taxa a partir de 1,99% a.m.</span>
               </div>
               <div className="flex items-center space-x-2 bg-white/10 rounded-full px-3 sm:px-4 py-2">

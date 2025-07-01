@@ -1,5 +1,5 @@
 
-import { Shield, Clock, CreditCard, Users, Calculator, HeadphonesIcon } from "lucide-react";
+import { Shield, Clock, CreditCard, Users, Calculator, Headphones } from "lucide-react";
 
 const Benefits = () => {
   const benefits = [
@@ -29,7 +29,7 @@ const Benefits = () => {
       description: "Equipe especializada pronta para ajudar você"
     },
     {
-      icon: HeadphonesIcon,
+      icon: Headphones,
       title: "Suporte 24/7",
       description: "Atendimento disponível todos os dias da semana"
     }
