@@ -43,7 +43,13 @@ const ValueSlider = ({ value, onChange }: ValueSliderProps) => {
     { value: '12', label: '12x' },
     { value: '18', label: '18x' },
     { value: '24', label: '24x' },
-    { value: '36', label: '36x' }
+    { value: '30', label: '30x' },
+    { value: '36', label: '36x' },
+    { value: '42', label: '42x' },
+    { value: '48', label: '48x' },
+    { value: '54', label: '54x' },
+    { value: '60', label: '60x' },
+    { value: '64', label: '64x' }
   ];
 
   const selectedInstallments = parseInt(installments);
