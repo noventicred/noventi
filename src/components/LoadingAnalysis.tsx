@@ -1,32 +1,20 @@
 
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Loader2, CheckCircle2, Clock, TrendingUp } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 
 const LoadingAnalysis = () => {
   const [countdown, setCountdown] = useState(10);
-  const [currentStep, setCurrentStep] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
   const { loanValue, personalData, contactData } = location.state || {};
 
-  const analysisSteps = [
-    { icon: CheckCircle2, text: 'Verificando CPF...', color: 'text-green-500' },
-    { icon: TrendingUp, text: 'Consultando score de crédito...', color: 'text-blue-500' },
-    { icon: Clock, text: 'Analisando histórico financeiro...', color: 'text-purple-500' },
-    { icon: CheckCircle2, text: 'Finalizando análise...', color: 'text-green-500' }
-  ];
-
   useEffect(() => {
-    const stepTimer = setInterval(() => {
-      setCurrentStep((prev) => (prev + 1) % analysisSteps.length);
-    }, 2500);
-
     const timer = setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
           clearInterval(timer);
-          clearInterval(stepTimer);
+          // Navegar para tela de aprovação passando os dados
           navigate('/aprovado', { 
             state: { 
               loanValue, 
@@ -40,88 +28,45 @@ const LoadingAnalysis = () => {
       });
     }, 1000);
 
-    return () => {
-      clearInterval(timer);
-      clearInterval(stepTimer);
-    };
+    return () => clearInterval(timer);
   }, [navigate, loanValue, personalData, contactData]);
 
-  const CurrentIcon = analysisSteps[currentStep].icon;
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 flex items-center justify-center">
+    <div className="min-h-screen bg-gray-light flex items-center justify-center">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-2xl p-8 text-center space-y-8 border border-green-100">
-            {/* Animated Header */}
-            <div className="space-y-6">
-              <div className="relative">
-                <div className="w-20 h-20 bg-gradient-to-r from-green-400 to-green-600 rounded-full mx-auto flex items-center justify-center animate-pulse shadow-lg">
-                  <Loader2 className="w-10 h-10 text-white animate-spin" />
-                </div>
-                <div className="absolute -top-2 -right-2 w-6 h-6 bg-yellow-400 rounded-full animate-bounce"></div>
+          <div className="bg-white rounded-2xl shadow-xl p-8 text-center space-y-8">
+            <div className="space-y-4">
+              <div className="w-16 h-16 bg-green-primary rounded-full mx-auto flex items-center justify-center">
+                <Loader2 className="w-8 h-8 text-white animate-spin" />
               </div>
               
-              <div className="space-y-3">
-                <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-800 animate-fade-in">
-                  Analisando seus dados
-                </h2>
-                <p className="text-gray-600 text-lg animate-slide-in-right">
-                  Aguarde {countdown} segundos. Nossa IA está verificando sua aprovação!
-                </p>
-              </div>
+              <h2 className="text-3xl font-bold text-green-dark">
+                Analisando seus dados
+              </h2>
+              
+              <p className="text-gray-600 text-lg">
+                Aguarde {countdown} segundos. Estamos analisando seus dados para verificar a aprovação do empréstimo.
+              </p>
             </div>
 
-            {/* Animated Countdown */}
-            <div className="space-y-6">
-              <div className="relative">
-                <div className="text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-blue-500 animate-pulse">
-                  {countdown}
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-32 h-32 border-4 border-green-200 rounded-full animate-ping opacity-20"></div>
-                </div>
+            <div className="space-y-4">
+              <div className="text-6xl font-bold text-green-primary">
+                {countdown}
               </div>
               
-              <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden shadow-inner">
+              <div className="w-full bg-gray-200 rounded-full h-3">
                 <div 
-                  className="bg-gradient-to-r from-green-400 to-green-600 h-4 rounded-full transition-all duration-1000 ease-out shadow-lg animate-pulse"
+                  className="bg-green-primary h-3 rounded-full transition-all duration-1000 ease-linear"
                   style={{ width: `${((10 - countdown) / 10) * 100}%` }}
                 ></div>
               </div>
             </div>
 
-            {/* Animated Steps */}
-            <div className="space-y-4">
-              <div className="flex items-center justify-center space-x-3 animate-fade-in">
-                <CurrentIcon className={`w-6 h-6 ${analysisSteps[currentStep].color} animate-bounce`} />
-                <span className="text-lg font-medium text-gray-700 animate-slide-in-right">
-                  {analysisSteps[currentStep].text}
-                </span>
-              </div>
-
-              {/* Progress dots */}
-              <div className="flex justify-center space-x-2">
-                {analysisSteps.map((_, index) => (
-                  <div
-                    key={index}
-                    className={`w-3 h-3 rounded-full transition-all duration-500 ${
-                      index === currentStep 
-                        ? 'bg-green-500 scale-125 animate-pulse' 
-                        : index < currentStep 
-                          ? 'bg-green-300' 
-                          : 'bg-gray-200'
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* Floating elements */}
-            <div className="relative">
-              <div className="absolute top-0 left-4 w-2 h-2 bg-green-400 rounded-full animate-bounce delay-100"></div>
-              <div className="absolute top-8 right-8 w-3 h-3 bg-blue-400 rounded-full animate-bounce delay-300"></div>
-              <div className="absolute bottom-4 left-12 w-2 h-2 bg-purple-400 rounded-full animate-bounce delay-500"></div>
+            <div className="text-sm text-gray-500">
+              <p>✓ Verificando CPF</p>
+              <p>✓ Consultando score de crédito</p>
+              <p>✓ Analisando histórico financeiro</p>
             </div>
           </div>
         </div>
