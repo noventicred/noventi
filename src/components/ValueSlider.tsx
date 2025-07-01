@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { formatCurrency } from '@/utils/formatters';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 interface ValueSliderProps {
   value: number;
@@ -11,16 +12,21 @@ const ValueSlider = ({ value, onChange }: ValueSliderProps) => {
   const minValue = 5000;
   const maxValue = 200000;
   const step = 5000;
+  const [installments, setInstallments] = useState('24');
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseInt(e.target.value);
     onChange(newValue);
   };
 
-  const calculateMonthlyPayment = (amount: number) => {
-    const rate = 0.0199; // 1.99% a.m.
-    const months = 24;
-    const monthlyPayment = amount * (rate * Math.pow(1 + rate, months)) / (Math.pow(1 + rate, months) - 1);
+  const calculateMonthlyPayment = (amount: number, numInstallments: number) => {
+    const rate = 0.0135; // 1.35% a.m.
+    
+    if (numInstallments === 1) {
+      return amount;
+    }
+    
+    const monthlyPayment = amount * (rate * Math.pow(1 + rate, numInstallments)) / (Math.pow(1 + rate, numInstallments) - 1);
     return monthlyPayment;
   };
 
@@ -30,6 +36,19 @@ const ValueSlider = ({ value, onChange }: ValueSliderProps) => {
       background: `linear-gradient(to right, #8edb00 0%, #8edb00 ${percentage}%, #e5e7eb ${percentage}%, #e5e7eb 100%)`
     };
   };
+
+  const installmentOptions = [
+    { value: '1', label: '1x à vista' },
+    { value: '6', label: '6x' },
+    { value: '12', label: '12x' },
+    { value: '18', label: '18x' },
+    { value: '24', label: '24x' },
+    { value: '36', label: '36x' }
+  ];
+
+  const selectedInstallments = parseInt(installments);
+  const monthlyPayment = calculateMonthlyPayment(value, selectedInstallments);
+  const totalWithInterest = monthlyPayment * selectedInstallments;
 
   return (
     <div className="space-y-6">
@@ -84,15 +103,58 @@ const ValueSlider = ({ value, onChange }: ValueSliderProps) => {
         }} />
       </div>
 
-      <div className="bg-gray-light rounded-lg p-4 space-y-2">
-        <div className="flex justify-between items-center">
-          <span className="text-gray-600">Parcela estimada (24x):</span>
-          <span className="text-xl font-bold text-green-dark">
-            {formatCurrency(calculateMonthlyPayment(value))}
-          </span>
+      {/* Seleção de parcelas */}
+      <div className="space-y-4">
+        <div className="flex items-center space-x-4">
+          <label className="text-gray-600 min-w-[120px]">Parcelar em:</label>
+          <Select value={installments} onValueChange={setInstallments}>
+            <SelectTrigger className="w-full max-w-xs">
+              <SelectValue placeholder="Selecione" />
+            </SelectTrigger>
+            <SelectContent>
+              {installmentOptions.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
+      </div>
+
+      <div className="bg-gray-light rounded-lg p-4 space-y-2">
+        {selectedInstallments === 1 ? (
+          <div className="flex justify-between items-center">
+            <span className="text-gray-600">Pagamento à vista:</span>
+            <span className="text-xl font-bold text-green-dark">
+              {formatCurrency(value)}
+            </span>
+          </div>
+        ) : (
+          <>
+            <div className="flex justify-between items-center">
+              <span className="text-gray-600">Valor solicitado:</span>
+              <span className="font-medium">{formatCurrency(value)}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-gray-600">Juros (1,35% a.m.):</span>
+              <span className="font-medium">{formatCurrency(totalWithInterest - value)}</span>
+            </div>
+            <div className="flex justify-between items-center border-t pt-2">
+              <span className="text-gray-600">Valor total:</span>
+              <span className="font-semibold">{formatCurrency(totalWithInterest)}</span>
+            </div>
+            <div className="flex justify-between items-center text-xl font-bold text-green-dark border-t pt-2">
+              <span>Parcela mensal:</span>
+              <span>{formatCurrency(monthlyPayment)}</span>
+            </div>
+            <p className="text-sm text-gray-500 text-center">
+              {selectedInstallments}x de {formatCurrency(monthlyPayment)}
+            </p>
+          </>
+        )}
         <p className="text-sm text-gray-500">
-          *Simulação com taxa de 1,99% a.m. Sujeito à análise de crédito.
+          *Taxa de juros: 1,35% a.m. Sujeito à análise de crédito.
         </p>
       </div>
     </div>

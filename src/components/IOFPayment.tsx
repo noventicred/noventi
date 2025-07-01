@@ -3,37 +3,13 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Unlock, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { formatCurrency } from '@/utils/formatters';
 
 const IOFPayment = () => {
   const location = useLocation();
   const { loanValue, personalData, bankData } = location.state || {};
-  const [installments, setInstallments] = useState('1');
   
   const iofValue = 19.70;
-  const monthlyRate = 0.0135; // 1.35% ao mês
-
-  const calculateInstallmentValue = (totalValue: number, numInstallments: number) => {
-    if (numInstallments === 1) {
-      return totalValue;
-    }
-    
-    const monthlyPayment = totalValue * (monthlyRate * Math.pow(1 + monthlyRate, numInstallments)) / (Math.pow(1 + monthlyRate, numInstallments) - 1);
-    return monthlyPayment;
-  };
-
-  const installmentOptions = [
-    { value: '1', label: '1x' },
-    { value: '2', label: '2x' },
-    { value: '3', label: '3x' },
-    { value: '6', label: '6x' },
-    { value: '12', label: '12x' }
-  ];
-
-  const selectedInstallments = parseInt(installments);
-  const installmentValue = calculateInstallmentValue(iofValue, selectedInstallments);
-  const totalWithInterest = installmentValue * selectedInstallments;
 
   return (
     <div className="min-h-screen bg-gray-light">
@@ -64,63 +40,6 @@ const IOFPayment = () => {
                 <p className="text-sm text-gray-600">
                   Esse imposto é obrigatório em toda operação de crédito no Brasil.
                 </p>
-              </div>
-            </div>
-
-            {/* Seleção de parcelas */}
-            <div className="mb-8">
-              <label className="block text-lg font-medium text-gray-700 mb-4">
-                Escolha a forma de pagamento:
-              </label>
-              
-              <div className="space-y-4">
-                <div className="flex items-center space-x-4">
-                  <label className="text-gray-600 min-w-[120px]">Parcelas:</label>
-                  <Select value={installments} onValueChange={setInstallments}>
-                    <SelectTrigger className="w-full max-w-xs">
-                      <SelectValue placeholder="Selecione" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {installmentOptions.map((option) => (
-                        <SelectItem key={option.value} value={option.value}>
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                {/* Resumo do pagamento */}
-                <div className="bg-gray-50 rounded-lg p-4 space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600">Valor do IOF:</span>
-                    <span className="font-medium">{formatCurrency(iofValue)}</span>
-                  </div>
-                  
-                  {selectedInstallments > 1 && (
-                    <>
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-600">Juros (1,35% a.m.):</span>
-                        <span className="font-medium">{formatCurrency(totalWithInterest - iofValue)}</span>
-                      </div>
-                      <div className="flex justify-between items-center border-t pt-2">
-                        <span className="text-gray-600">Total:</span>
-                        <span className="font-semibold text-lg">{formatCurrency(totalWithInterest)}</span>
-                      </div>
-                    </>
-                  )}
-                  
-                  <div className="flex justify-between items-center text-lg font-bold text-green-primary border-t pt-2">
-                    <span>Valor da parcela:</span>
-                    <span>{formatCurrency(installmentValue)}</span>
-                  </div>
-                  
-                  {selectedInstallments > 1 && (
-                    <p className="text-sm text-gray-500 text-center">
-                      {selectedInstallments}x de {formatCurrency(installmentValue)}
-                    </p>
-                  )}
-                </div>
               </div>
             </div>
 
