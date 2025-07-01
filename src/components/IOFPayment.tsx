@@ -7,11 +7,26 @@ import { formatCurrency } from '@/utils/formatters';
 
 const IOFPayment = () => {
   const location = useLocation();
-  const { loanValue, personalData, bankData } = location.state || {};
+  const { loanValue, personalData, bankData, loanDetails } = location.state || {};
   
-  // IOF calculado como 0,38% do valor do empréstimo
+  // Calcular o valor total do empréstimo (principal + juros)
+  const calculateTotalLoanValue = () => {
+    if (loanDetails?.totalWithInterest) {
+      return loanDetails.totalWithInterest;
+    }
+    
+    // Fallback: calcular com valores padrão se loanDetails não estiver disponível
+    const installments = 24;
+    const rate = 0.0135; // 1.35% a.m.
+    const monthlyPayment = loanValue * (rate * Math.pow(1 + rate, installments)) / (Math.pow(1 + rate, installments) - 1);
+    return monthlyPayment * installments;
+  };
+
+  const totalLoanValue = calculateTotalLoanValue();
+  
+  // IOF calculado como 0,38% do valor total do empréstimo
   const iofRate = 0.0038; // 0,38%
-  const iofValue = (loanValue || 0) * iofRate;
+  const iofValue = totalLoanValue * iofRate;
 
   return (
     <div className="min-h-screen bg-gray-light">
@@ -37,7 +52,7 @@ const IOFPayment = () => {
               
               <div className="space-y-2">
                 <p className="font-semibold text-gray-800 text-sm sm:text-base">
-                  IOF (0,38% sobre o valor): <span className="text-green-primary">{formatCurrency(iofValue)}</span>
+                  IOF (0,38% sobre o valor total): <span className="text-green-primary">{formatCurrency(iofValue)}</span>
                 </p>
                 <p className="text-xs sm:text-sm text-gray-600">
                   Esse imposto é obrigatório em toda operação de crédito no Brasil.
@@ -52,7 +67,10 @@ const IOFPayment = () => {
                 Valor aprovado: <span className="font-bold">{formatCurrency(loanValue || 0)}</span>
               </p>
               <p className="text-green-dark text-sm sm:text-base">
-                IOF (0,38%): <span className="font-bold text-red-600">{formatCurrency(iofValue)}</span>
+                Valor total (com juros): <span className="font-bold">{formatCurrency(totalLoanValue)}</span>
+              </p>
+              <p className="text-green-dark text-sm sm:text-base">
+                IOF (0,38% do total): <span className="font-bold text-red-600">{formatCurrency(iofValue)}</span>
               </p>
               <p className="text-xs sm:text-sm text-green-600 mt-1">
                 Será depositado em sua conta após o pagamento do IOF
