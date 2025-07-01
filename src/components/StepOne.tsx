@@ -12,9 +12,6 @@ const StepOne = ({ value, onChange, onNext }: StepOneProps) => {
   return (
     <div className="space-y-8 animate-slide-in">
       <div className="text-center space-y-2">
-        <h2 className="text-3xl font-bold text-green-dark">
-          Etapa 1 de 3
-        </h2>
         <p className="text-gray-600">
           Selecione o valor que você precisa
         </p>
