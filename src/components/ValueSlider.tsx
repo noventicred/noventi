@@ -24,6 +24,13 @@ const ValueSlider = ({ value, onChange }: ValueSliderProps) => {
     return monthlyPayment;
   };
 
+  const getSliderStyles = () => {
+    const percentage = ((value - minValue) / (maxValue - minValue)) * 100;
+    return {
+      background: `linear-gradient(to right, #8edb00 0%, #8edb00 ${percentage}%, #e5e7eb ${percentage}%, #e5e7eb 100%)`
+    };
+  };
+
   return (
     <div className="space-y-6">
       <div className="text-center space-y-2">
@@ -43,12 +50,38 @@ const ValueSlider = ({ value, onChange }: ValueSliderProps) => {
           step={step}
           value={value}
           onChange={handleSliderChange}
-          className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+          className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+          style={getSliderStyles()}
         />
         <div className="flex justify-between text-sm text-gray-500 mt-2">
           <span>{formatCurrency(minValue)}</span>
           <span>{formatCurrency(maxValue)}</span>
         </div>
+        
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            input[type="range"]::-webkit-slider-thumb {
+              appearance: none;
+              height: 24px;
+              width: 24px;
+              border-radius: 50%;
+              background: #8edb00;
+              cursor: pointer;
+              border: 2px solid #ffffff;
+              box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            }
+
+            input[type="range"]::-moz-range-thumb {
+              height: 24px;
+              width: 24px;
+              border-radius: 50%;
+              background: #8edb00;
+              cursor: pointer;
+              border: 2px solid #ffffff;
+              box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            }
+          `
+        }} />
       </div>
 
       <div className="bg-gray-light rounded-lg p-4 space-y-2">
@@ -62,33 +95,6 @@ const ValueSlider = ({ value, onChange }: ValueSliderProps) => {
           *Simulação com taxa de 1,99% a.m. Sujeito à análise de crédito.
         </p>
       </div>
-
-      <style jsx>{`
-        .slider::-webkit-slider-thumb {
-          appearance: none;
-          height: 24px;
-          width: 24px;
-          border-radius: 50%;
-          background: #8edb00;
-          cursor: pointer;
-          border: 2px solid #ffffff;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        .slider::-moz-range-thumb {
-          height: 24px;
-          width: 24px;
-          border-radius: 50%;
-          background: #8edb00;
-          cursor: pointer;
-          border: 2px solid #ffffff;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        .slider::-webkit-slider-track {
-          background: linear-gradient(to right, #8edb00 0%, #8edb00 ${((value - minValue) / (maxValue - minValue)) * 100}%, #e5e7eb ${((value - minValue) / (maxValue - minValue)) * 100}%, #e5e7eb 100%);
-        }
-      `}</style>
     </div>
   );
 };
