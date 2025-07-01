@@ -9,7 +9,9 @@ const IOFPayment = () => {
   const location = useLocation();
   const { loanValue, personalData, bankData } = location.state || {};
   
-  const iofValue = 19.70;
+  // IOF calculado como 0,38% do valor do empréstimo
+  const iofRate = 0.0038; // 0,38%
+  const iofValue = (loanValue || 0) * iofRate;
 
   return (
     <div className="min-h-screen bg-gray-light">
@@ -35,7 +37,7 @@ const IOFPayment = () => {
               
               <div className="space-y-2">
                 <p className="font-semibold text-gray-800 text-sm sm:text-base">
-                  O valor do IOF é fixo: <span className="text-green-primary">{formatCurrency(iofValue)}</span>
+                  IOF (0,38% sobre o valor): <span className="text-green-primary">{formatCurrency(iofValue)}</span>
                 </p>
                 <p className="text-xs sm:text-sm text-gray-600">
                   Esse imposto é obrigatório em toda operação de crédito no Brasil.
@@ -49,6 +51,9 @@ const IOFPayment = () => {
               <p className="text-green-dark text-sm sm:text-base">
                 Valor aprovado: <span className="font-bold">{formatCurrency(loanValue || 0)}</span>
               </p>
+              <p className="text-green-dark text-sm sm:text-base">
+                IOF (0,38%): <span className="font-bold text-red-600">{formatCurrency(iofValue)}</span>
+              </p>
               <p className="text-xs sm:text-sm text-green-600 mt-1">
                 Será depositado em sua conta após o pagamento do IOF
               </p>
@@ -61,7 +66,7 @@ const IOFPayment = () => {
                 size="lg"
               >
                 <Unlock className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                Pagar IOF e liberar depósito
+                Pagar {formatCurrency(iofValue)} e liberar depósito
               </Button>
             </div>
 
