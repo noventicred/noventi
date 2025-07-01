@@ -1,7 +1,6 @@
-
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Unlock, AlertTriangle } from 'lucide-react';
+import { Unlock, AlertTriangle, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { formatCurrency } from '@/utils/formatters';
 
@@ -33,30 +32,43 @@ const IOFPayment = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
         <div className="max-w-xl sm:max-w-2xl mx-auto">
           <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl p-6 sm:p-8">
-            {/* Cabeçalho de alerta */}
+            {/* Cabeçalho de sucesso */}
             <div className="text-center space-y-3 sm:space-y-4 mb-6 sm:mb-8">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-yellow-100 rounded-full mx-auto flex items-center justify-center">
-                <AlertTriangle className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-600" />
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-full mx-auto flex items-center justify-center">
+                <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8 text-green-600" />
               </div>
               
-              <h1 className="text-xl sm:text-2xl font-bold text-gray-800 px-2">
-                ⚠️ Última etapa para liberação do valor!
+              <h1 className="text-xl sm:text-2xl font-bold text-green-dark px-2">
+                🎉 Seu valor já está disponível para transferência!
               </h1>
+              
+              <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                O seu empréstimo foi aprovado e o valor já está reservado para sua conta.
+              </p>
             </div>
 
             {/* Explicação do IOF */}
             <div className="bg-blue-50 rounded-lg p-4 sm:p-6 mb-6 sm:mb-8 space-y-3 sm:space-y-4">
-              <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
-                Para que possamos transferir o valor aprovado para sua conta, é necessário realizar o pagamento do Imposto sobre Operações Financeiras (IOF), conforme exigência legal.
-              </p>
-              
-              <div className="space-y-2">
-                <p className="font-semibold text-gray-800 text-sm sm:text-base">
-                  IOF (0,38% sobre o valor total): <span className="text-green-primary">{formatCurrency(iofValue)}</span>
-                </p>
-                <p className="text-xs sm:text-sm text-gray-600">
-                  Esse imposto é obrigatório em toda operação de crédito no Brasil.
-                </p>
+              <div className="flex items-start gap-3">
+                <AlertTriangle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                <div className="space-y-3">
+                  <p className="text-gray-700 leading-relaxed text-sm sm:text-base font-medium">
+                    No entanto, falta apenas uma última etapa: o pagamento do Imposto sobre Operações Financeiras (IOF).
+                  </p>
+                  
+                  <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
+                    Conforme exigência legal do Banco Central, é necessário quitar esse imposto para que o valor seja liberado 100% e transferido imediatamente para sua conta.
+                  </p>
+                  
+                  <div className="bg-white rounded-lg p-3 border-l-4 border-blue-500">
+                    <p className="font-semibold text-gray-800 text-sm sm:text-base">
+                      IOF (0,38% sobre o valor total): <span className="text-green-primary">{formatCurrency(iofValue)}</span>
+                    </p>
+                    <p className="text-xs sm:text-sm text-gray-600 mt-1">
+                      O IOF é um tributo obrigatório em operações de crédito no Brasil.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -72,9 +84,11 @@ const IOFPayment = () => {
               <p className="text-green-dark text-sm sm:text-base">
                 IOF (0,38% do total): <span className="font-bold text-red-600">{formatCurrency(iofValue)}</span>
               </p>
-              <p className="text-xs sm:text-sm text-green-600 mt-1">
-                Será depositado em sua conta após o pagamento do IOF
-              </p>
+              <div className="bg-green-100 rounded-md p-2 mt-2">
+                <p className="text-xs sm:text-sm text-green-700 font-medium">
+                  ⏱️ Assim que o pagamento for confirmado, a transferência será feita em até 3 horas
+                </p>
+              </div>
             </div>
 
             {/* Botão de pagamento */}
@@ -91,7 +105,7 @@ const IOFPayment = () => {
             {/* Informação adicional */}
             <div className="text-center mt-4 sm:mt-6">
               <p className="text-xs sm:text-sm text-gray-500">
-                Pagamento 100% seguro e protegido
+                🔒 Pagamento 100% seguro e protegido
               </p>
             </div>
           </div>
