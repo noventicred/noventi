@@ -1,4 +1,3 @@
-
 import { Phone, Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
@@ -9,12 +8,17 @@ const Footer = () => {
           <div className="space-y-3 sm:space-y-4">
             <div className="flex items-center">
               <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-primary rounded-lg mr-2 sm:mr-3 flex items-center justify-center">
-                <span className="text-white font-bold text-sm sm:text-lg">$</span>
+                <span className="text-white font-bold text-sm sm:text-lg">
+                  $
+                </span>
               </div>
-              <span className="text-xl sm:text-2xl font-bold">EmpréstimoPro</span>
+              <span className="text-xl sm:text-2xl font-bold">
+                EmpréstimoPro
+              </span>
             </div>
             <p className="text-white/80 leading-relaxed text-sm sm:text-base">
-              Sua solução em empréstimos pessoais com as melhores condições do mercado.
+              Sua solução em empréstimos pessoais com as melhores condições do
+              mercado.
             </p>
           </div>
 
@@ -43,15 +47,21 @@ const Footer = () => {
             <div className="space-y-2 sm:space-y-3">
               <div className="flex items-center space-x-2 sm:space-x-3">
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-green-primary flex-shrink-0" />
-                <span className="text-white/80 text-sm sm:text-base">(11) 4000-1234</span>
+                <span className="text-white/80 text-sm sm:text-base">
+                  (11) 4000-1234
+                </span>
               </div>
               <div className="flex items-center space-x-2 sm:space-x-3">
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-green-primary flex-shrink-0" />
-                <span className="text-white/80 text-sm sm:text-base break-all">contato@emprestimopro.com</span>
+                <span className="text-white/80 text-sm sm:text-base break-all">
+                  contato@emprestimopro.com
+                </span>
               </div>
               <div className="flex items-center space-x-2 sm:space-x-3">
                 <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-green-primary flex-shrink-0" />
-                <span className="text-white/80 text-sm sm:text-base">São Paulo, SP</span>
+                <span className="text-white/80 text-sm sm:text-base">
+                  São Paulo, SP
+                </span>
               </div>
             </div>
           </div>

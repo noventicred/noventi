@@ -15,27 +15,32 @@ interface StepThreeProps {
   onPrevious: () => void;
 }
 
-const StepThree = ({ data, onChange, onSubmit, onPrevious }: StepThreeProps) => {
+const StepThree = ({
+  data,
+  onChange,
+  onSubmit,
+  onPrevious,
+}: StepThreeProps) => {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\D/g, '');
+    const value = e.target.value.replace(/\D/g, "");
     if (value.length <= 11) {
       const formatted = formatPhone(value);
-      onChange('phone', formatted);
-      
+      onChange("phone", formatted);
+
       if (errors.phone) {
-        setErrors(prev => ({ ...prev, phone: '' }));
+        setErrors((prev) => ({ ...prev, phone: "" }));
       }
     }
   };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    onChange('email', value);
-    
+    onChange("email", value);
+
     if (errors.email) {
-      setErrors(prev => ({ ...prev, email: '' }));
+      setErrors((prev) => ({ ...prev, email: "" }));
     }
   };
 
@@ -43,15 +48,15 @@ const StepThree = ({ data, onChange, onSubmit, onPrevious }: StepThreeProps) => 
     const newErrors: Record<string, string> = {};
 
     if (!data.email.trim()) {
-      newErrors.email = 'E-mail é obrigatório';
+      newErrors.email = "E-mail é obrigatório";
     } else if (!validateEmail(data.email)) {
-      newErrors.email = 'E-mail inválido';
+      newErrors.email = "E-mail inválido";
     }
 
     if (!data.phone.trim()) {
-      newErrors.phone = 'WhatsApp é obrigatório';
-    } else if (data.phone.replace(/\D/g, '').length < 10) {
-      newErrors.phone = 'Número inválido';
+      newErrors.phone = "WhatsApp é obrigatório";
+    } else if (data.phone.replace(/\D/g, "").length < 10) {
+      newErrors.phone = "Número inválido";
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -65,11 +70,8 @@ const StepThree = ({ data, onChange, onSubmit, onPrevious }: StepThreeProps) => 
   return (
     <div className="space-y-8 animate-slide-in">
       <div className="text-center space-y-2">
-        <h2 className="text-3xl font-bold text-green-dark">
-          Etapa 3 de 3
-        </h2>
-        <p className="text-gray-600">
-          Como podemos entrar em contato?
+        <p className="text-lg font-medium text-gray-700">
+          Informe seus dados de contato
         </p>
       </div>
 
@@ -82,7 +84,7 @@ const StepThree = ({ data, onChange, onSubmit, onPrevious }: StepThreeProps) => 
             value={data.email}
             onChange={handleEmailChange}
             placeholder="seu@email.com"
-            className={errors.email ? 'border-red-500' : ''}
+            className={errors.email ? "border-red-500" : ""}
           />
           {errors.email && (
             <p className="text-red-500 text-sm">{errors.email}</p>
@@ -96,7 +98,9 @@ const StepThree = ({ data, onChange, onSubmit, onPrevious }: StepThreeProps) => 
             value={data.phone}
             onChange={handlePhoneChange}
             placeholder="(11) 99999-9999"
-            className={errors.phone ? 'border-red-500' : ''}
+            inputMode="numeric"
+            pattern="[0-9]*"
+            className={errors.phone ? "border-red-500" : ""}
           />
           {errors.phone && (
             <p className="text-red-500 text-sm">{errors.phone}</p>

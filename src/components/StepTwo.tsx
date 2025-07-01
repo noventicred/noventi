@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,10 +22,19 @@ const StepTwo = ({ data, onChange, onNext, onPrevious }: StepTwoProps) => {
   const handleCPFChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const formatted = formatCPF(value);
-    onChange('cpf', formatted);
-    
+    onChange("cpf", formatted);
+
     if (errors.cpf) {
-      setErrors(prev => ({ ...prev, cpf: '' }));
+      setErrors((prev) => ({ ...prev, cpf: "" }));
+    }
+  };
+
+  const handleNameChange = (field: "firstName" | "lastName", value: string) => {
+    // Remove números automaticamente
+    const onlyLetters = value.replace(/[0-9]/g, "");
+    onChange(field, onlyLetters);
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: "" }));
     }
   };
 
@@ -34,17 +42,21 @@ const StepTwo = ({ data, onChange, onNext, onPrevious }: StepTwoProps) => {
     const newErrors: Record<string, string> = {};
 
     if (!data.firstName.trim()) {
-      newErrors.firstName = 'Nome é obrigatório';
+      newErrors.firstName = "Nome é obrigatório";
+    } else if (/[0-9]/.test(data.firstName)) {
+      newErrors.firstName = "Não use números no nome";
     }
 
     if (!data.lastName.trim()) {
-      newErrors.lastName = 'Sobrenome é obrigatório';
+      newErrors.lastName = "Sobrenome é obrigatório";
+    } else if (/[0-9]/.test(data.lastName)) {
+      newErrors.lastName = "Não use números no sobrenome";
     }
 
     if (!data.cpf.trim()) {
-      newErrors.cpf = 'CPF é obrigatório';
+      newErrors.cpf = "CPF é obrigatório";
     } else if (!validateCPF(data.cpf)) {
-      newErrors.cpf = 'CPF inválido';
+      newErrors.cpf = "CPF inválido";
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -58,10 +70,7 @@ const StepTwo = ({ data, onChange, onNext, onPrevious }: StepTwoProps) => {
   return (
     <div className="space-y-8 animate-slide-in">
       <div className="text-center space-y-2">
-        <h2 className="text-3xl font-bold text-green-dark">
-          Etapa 2 de 3
-        </h2>
-        <p className="text-gray-600">
+        <p className="text-lg font-medium text-gray-700">
           Informe seus dados pessoais
         </p>
       </div>
@@ -72,9 +81,9 @@ const StepTwo = ({ data, onChange, onNext, onPrevious }: StepTwoProps) => {
           <Input
             id="firstName"
             value={data.firstName}
-            onChange={(e) => onChange('firstName', e.target.value)}
+            onChange={(e) => handleNameChange("firstName", e.target.value)}
             placeholder="Digite seu nome"
-            className={errors.firstName ? 'border-red-500' : ''}
+            className={errors.firstName ? "border-red-500" : ""}
           />
           {errors.firstName && (
             <p className="text-red-500 text-sm">{errors.firstName}</p>
@@ -86,9 +95,9 @@ const StepTwo = ({ data, onChange, onNext, onPrevious }: StepTwoProps) => {
           <Input
             id="lastName"
             value={data.lastName}
-            onChange={(e) => onChange('lastName', e.target.value)}
+            onChange={(e) => handleNameChange("lastName", e.target.value)}
             placeholder="Digite seu sobrenome"
-            className={errors.lastName ? 'border-red-500' : ''}
+            className={errors.lastName ? "border-red-500" : ""}
           />
           {errors.lastName && (
             <p className="text-red-500 text-sm">{errors.lastName}</p>
@@ -103,11 +112,11 @@ const StepTwo = ({ data, onChange, onNext, onPrevious }: StepTwoProps) => {
             onChange={handleCPFChange}
             placeholder="000.000.000-00"
             maxLength={14}
-            className={errors.cpf ? 'border-red-500' : ''}
+            inputMode="numeric"
+            pattern="[0-9]*"
+            className={errors.cpf ? "border-red-500" : ""}
           />
-          {errors.cpf && (
-            <p className="text-red-500 text-sm">{errors.cpf}</p>
-          )}
+          {errors.cpf && <p className="text-red-500 text-sm">{errors.cpf}</p>}
         </div>
       </div>
 

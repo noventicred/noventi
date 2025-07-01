@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
@@ -8,55 +8,68 @@ const LoanForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [loanValue, setLoanValue] = useState(50000);
   const [personalData, setPersonalData] = useState({
-    firstName: '',
-    lastName: '',
-    cpf: ''
+    firstName: "",
+    lastName: "",
+    cpf: "",
   });
   const [contactData, setContactData] = useState({
-    email: '',
-    phone: ''
+    email: "",
+    phone: "",
   });
 
   const navigate = useNavigate();
+  const formRef = useRef<HTMLDivElement>(null);
 
   const handlePersonalDataChange = (field: string, value: string) => {
-    setPersonalData(prev => ({ ...prev, [field]: value }));
+    setPersonalData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleContactDataChange = (field: string, value: string) => {
-    setContactData(prev => ({ ...prev, [field]: value }));
+    setContactData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = async () => {
     // Navegar para tela de carregamento passando todos os dados
-    navigate('/analise', { 
-      state: { 
-        loanValue, 
-        personalData, 
-        contactData 
-      } 
+    navigate("/analise", {
+      state: {
+        loanValue,
+        personalData,
+        contactData,
+      },
     });
+  };
+
+  const scrollToForm = () => {
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
   };
 
   const renderProgressBar = () => {
     const progress = (currentStep / 3) * 100;
-    
+
     return (
       <div className="mb-8">
         <div className="w-full bg-gray-200 rounded-full h-2">
-          <div 
+          <div
             className="bg-green-primary h-2 rounded-full transition-all duration-300 ease-in-out"
             style={{ width: `${progress}%` }}
           ></div>
         </div>
         <div className="flex justify-between mt-2 text-sm text-gray-500">
-          <span className={currentStep >= 1 ? 'text-green-primary font-medium' : ''}>
+          <span
+            className={currentStep >= 1 ? "text-green-primary font-medium" : ""}
+          >
             Valor
           </span>
-          <span className={currentStep >= 2 ? 'text-green-primary font-medium' : ''}>
+          <span
+            className={currentStep >= 2 ? "text-green-primary font-medium" : ""}
+          >
             Dados Pessoais
           </span>
-          <span className={currentStep >= 3 ? 'text-green-primary font-medium' : ''}>
+          <span
+            className={currentStep >= 3 ? "text-green-primary font-medium" : ""}
+          >
             Contato
           </span>
         </div>
@@ -68,14 +81,17 @@ const LoanForm = () => {
     <section id="formulario" className="py-16 bg-gray-light">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-xl p-8">
+          <div ref={formRef} className="bg-white rounded-2xl shadow-xl p-8">
             {renderProgressBar()}
-            
+
             {currentStep === 1 && (
               <StepOne
                 value={loanValue}
                 onChange={setLoanValue}
-                onNext={() => setCurrentStep(2)}
+                onNext={() => {
+                  setCurrentStep(2);
+                  scrollToForm();
+                }}
               />
             )}
 
@@ -83,7 +99,10 @@ const LoanForm = () => {
               <StepTwo
                 data={personalData}
                 onChange={handlePersonalDataChange}
-                onNext={() => setCurrentStep(3)}
+                onNext={() => {
+                  setCurrentStep(3);
+                  scrollToForm();
+                }}
                 onPrevious={() => setCurrentStep(1)}
               />
             )}

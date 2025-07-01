@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
@@ -8,28 +7,34 @@ const FAQ = () => {
   const faqs = [
     {
       question: "Qual o valor mínimo e máximo para empréstimo?",
-      answer: "Você pode solicitar empréstimos de R$ 5.000 até R$ 200.000, dependendo da sua análise de crédito."
+      answer:
+        "Você pode solicitar empréstimos de R$ 5.000 até R$ 200.000, conforme as condições disponíveis no momento.",
     },
     {
       question: "Quanto tempo demora para aprovação?",
-      answer: "Nossa análise é feita em tempo real. Você recebe a resposta em até 5 minutos após enviar a solicitação."
+      answer:
+        "Nossa análise é feita em tempo real. Você recebe a resposta em até 5 minutos após enviar a solicitação.",
     },
     {
       question: "Qual a taxa de juros?",
-      answer: "Nossas taxas começam a partir de 1,99% ao mês, variando conforme seu perfil de crédito."
+      answer:
+        "Nossas taxas começam a partir de 1,99% ao mês, variando conforme seu perfil.",
     },
     {
       question: "Preciso ter conta no banco?",
-      answer: "Não é necessário. Trabalhamos com todos os bancos e você pode receber em qualquer conta de sua titularidade."
+      answer:
+        "Não é necessário. Trabalhamos com todos os bancos e você pode receber em qualquer conta de sua titularidade.",
     },
     {
       question: "Consulta o SPC/Serasa?",
-      answer: "Fazemos nossa própria análise de crédito, sem necessidade de consulta aos órgãos de proteção."
+      answer:
+        "Fazemos nossa própria avaliação, sem necessidade de consulta aos órgãos de proteção.",
     },
     {
       question: "Como recebo o dinheiro?",
-      answer: "Após aprovação, o valor é depositado diretamente na sua conta corrente no mesmo dia útil."
-    }
+      answer:
+        "Após aprovação, o valor é depositado diretamente na sua conta corrente no mesmo dia útil.",
+    },
   ];
 
   const toggleFAQ = (index: number) => {
@@ -50,7 +55,7 @@ const FAQ = () => {
 
         <div className="max-w-3xl mx-auto space-y-3 sm:space-y-4">
           {faqs.map((faq, index) => (
-            <div 
+            <div
               key={index}
               className="bg-white rounded-lg shadow-sm border border-gray-200"
             >
@@ -67,7 +72,7 @@ const FAQ = () => {
                   <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-green-primary flex-shrink-0" />
                 )}
               </button>
-              
+
               {openIndex === index && (
                 <div className="px-4 sm:px-6 pb-3 sm:pb-4">
                   <p className="text-gray-600 leading-relaxed text-sm sm:text-base">

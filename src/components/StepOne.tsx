@@ -10,13 +10,7 @@ interface StepOneProps {
 
 const StepOne = ({ value, onChange, onNext }: StepOneProps) => {
   return (
-    <div className="space-y-8 animate-slide-in">
-      <div className="text-center space-y-2">
-        <p className="text-gray-600">
-          Selecione o valor que você precisa
-        </p>
-      </div>
-
+    <div>
       <ValueSlider value={value} onChange={onChange} />
 
       <div className="flex justify-center">
