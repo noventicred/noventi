@@ -1,10 +1,8 @@
-
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
-import { formatCurrency } from "@/utils/formatters";
-import { useToast } from "@/hooks/use-toast";
 
 const LoanForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -19,7 +17,7 @@ const LoanForm = () => {
     phone: ''
   });
 
-  const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handlePersonalDataChange = (field: string, value: string) => {
     setPersonalData(prev => ({ ...prev, [field]: value }));
@@ -30,23 +28,14 @@ const LoanForm = () => {
   };
 
   const handleSubmit = async () => {
-    // Simular envio dos dados
-    console.log('Dados do empréstimo:', {
-      value: loanValue,
-      personal: personalData,
-      contact: contactData
+    // Navegar para tela de carregamento passando todos os dados
+    navigate('/analise', { 
+      state: { 
+        loanValue, 
+        personalData, 
+        contactData 
+      } 
     });
-
-    toast({
-      title: "Solicitação enviada com sucesso!",
-      description: `Sua solicitação de ${formatCurrency(loanValue)} foi recebida. Entraremos em contato em breve.`,
-    });
-
-    // Reset form
-    setCurrentStep(1);
-    setLoanValue(50000);
-    setPersonalData({ firstName: '', lastName: '', cpf: '' });
-    setContactData({ email: '', phone: '' });
   };
 
   const renderProgressBar = () => {

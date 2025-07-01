@@ -1,10 +1,9 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { formatPhone, validateEmail } from "@/utils/formatters";
-import { ArrowLeft, CheckCircle } from "lucide-react";
+import { ArrowLeft, Play } from "lucide-react";
 
 interface StepThreeProps {
   data: {
@@ -119,8 +118,8 @@ const StepThree = ({ data, onChange, onSubmit, onPrevious }: StepThreeProps) => 
           onClick={handleSubmit}
           className="bg-green-primary hover:bg-green-dark text-white px-8 py-3 rounded-lg font-semibold flex items-center space-x-2"
         >
-          <CheckCircle className="w-5 h-5" />
-          <span>Finalizar Solicitação</span>
+          <Play className="w-5 h-5" />
+          <span>Fazer Simulação</span>
         </Button>
       </div>
     </div>
