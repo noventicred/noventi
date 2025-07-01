@@ -36,30 +36,30 @@ const Benefits = () => {
   ];
 
   return (
-    <section id="vantagens" className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-green-dark mb-4">
+    <section id="vantagens" className="py-12 sm:py-16 bg-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-green-dark mb-3 sm:mb-4">
             Por que escolher nosso empréstimo?
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
             Oferecemos as melhores condições do mercado com total transparência e agilidade
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {benefits.map((benefit, index) => (
             <div 
               key={index} 
-              className="bg-gray-light rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300"
+              className="bg-gray-light rounded-xl sm:rounded-2xl p-5 sm:p-6 hover:shadow-lg transition-shadow duration-300"
             >
-              <div className="w-12 h-12 bg-green-primary rounded-lg flex items-center justify-center mb-4">
-                <benefit.icon className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-primary rounded-lg flex items-center justify-center mb-3 sm:mb-4">
+                <benefit.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-green-dark mb-2">
+              <h3 className="text-lg sm:text-xl font-bold text-green-dark mb-2">
                 {benefit.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
                 {benefit.description}
               </p>
             </div>

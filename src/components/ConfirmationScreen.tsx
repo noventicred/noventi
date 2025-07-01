@@ -26,33 +26,37 @@ const ConfirmationScreen = () => {
 
   return (
     <div className="min-h-screen bg-gray-light">
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-xl p-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <div className="max-w-xl sm:max-w-2xl mx-auto">
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl p-6 sm:p-8">
             {/* Confirmação de sucesso */}
-            <div className="text-center space-y-6">
-              <div className="w-20 h-20 bg-green-primary rounded-full mx-auto flex items-center justify-center">
-                <CheckCircle className="w-10 h-10 text-white" />
+            <div className="text-center space-y-4 sm:space-y-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-green-primary rounded-full mx-auto flex items-center justify-center">
+                <CheckCircle className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
               </div>
               
               <div className="space-y-2">
-                <h1 className="text-3xl font-bold text-green-dark">
+                <h1 className="text-2xl sm:text-3xl font-bold text-green-dark">
                   Dados enviados com sucesso!
                 </h1>
-                <p className="text-lg text-gray-600">
+                <p className="text-base sm:text-lg text-gray-600 px-2">
                   Aguarde enquanto validamos suas informações bancárias...
                 </p>
               </div>
 
               {/* Resumo rápido */}
-              <div className="bg-gray-50 rounded-lg p-4 text-sm">
-                <p className="text-gray-600">Valor aprovado: <span className="font-semibold text-green-primary">{formatCurrency(loanValue || 0)}</span></p>
-                <p className="text-gray-600">Banco: <span className="font-semibold">{bankData?.bankName}</span></p>
+              <div className="bg-gray-50 rounded-lg p-3 sm:p-4 text-sm">
+                <p className="text-gray-600">
+                  Valor aprovado: <span className="font-semibold text-green-primary">{formatCurrency(loanValue || 0)}</span>
+                </p>
+                <p className="text-gray-600">
+                  Banco: <span className="font-semibold">{bankData?.bankName}</span>
+                </p>
               </div>
 
               {/* Indicador de progresso */}
-              <div className="flex justify-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-primary"></div>
+              <div className="flex justify-center pt-2">
+                <div className="animate-spin rounded-full h-6 w-6 sm:h-8 sm:w-8 border-b-2 border-green-primary"></div>
               </div>
             </div>
           </div>
