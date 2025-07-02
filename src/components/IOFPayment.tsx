@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Lock, AlertCircle, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,11 +6,16 @@ import { formatCurrency } from "@/utils/formatters";
 import { addDays, format } from "date-fns";
 import SecurityHeader from "@/components/SecurityHeader";
 import SecurityFooter from "@/components/SecurityFooter";
+import { Input } from "@/components/ui/input";
 
 const IOFPayment = () => {
   const location = useLocation();
   const { loanValue, personalData, bankData, loanDetails } =
     location.state || {};
+
+  const [pixData, setPixData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   // Calcular o valor total do empréstimo (principal + juros)
   const calculateTotalLoanValue = () => {
@@ -34,6 +39,83 @@ const IOFPayment = () => {
   const iofValue = totalLoanValue * iofRate;
 
   const primeiraParcela = format(addDays(new Date(), 60), "dd/MM/yyyy");
+
+  const handlePixPayment = async () => {
+    setLoading(true);
+    setError("");
+    setPixData(null);
+    // Validar e-mail e telefone do personalData
+    const email = personalData?.email || "";
+    const phone = personalData?.phone?.replace(/\D/g, "") || "";
+    const emailRegex = /^[\w-.]+@[\w-]+\.[a-zA-Z]{2,}$/;
+    if (!email) {
+      setError("E-mail obrigatório. Corrija no formulário inicial.");
+      setLoading(false);
+      return;
+    }
+    if (!emailRegex.test(email)) {
+      setError("E-mail inválido. Corrija no formulário inicial.");
+      setLoading(false);
+      return;
+    }
+    if (!phone) {
+      setError("Telefone obrigatório. Corrija no formulário inicial.");
+      setLoading(false);
+      return;
+    }
+    if (!phone.match(/^\d{10,11}$/)) {
+      setError(
+        "Telefone inválido. Corrija no formulário inicial. Use o formato DDD+Número, ex: 11999999999"
+      );
+      setLoading(false);
+      return;
+    }
+    try {
+      const identifier = `${personalData?.cpf}-${Date.now()}`;
+      const dueDate = format(addDays(new Date(), 2), "yyyy-MM-dd");
+      const payload = {
+        identifier,
+        amount: Number(iofValue.toFixed(2)),
+        client: {
+          name: `${personalData?.firstName || ""} ${
+            personalData?.lastName || ""
+          }`.trim(),
+          email,
+          phone,
+          document: personalData?.cpf?.replace(/\D/g, "") || "",
+        },
+        dueDate,
+        callbackUrl: "https://seusite.com/api/pix/callback",
+        products: [
+          {
+            id: "iof-001",
+            name: "IOF",
+            quantity: 1,
+            price: Number(iofValue.toFixed(2)),
+          },
+        ],
+      };
+      const res = await fetch("/api/pix", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok)
+        throw new Error(
+          data?.details?.message || data?.error || "Erro ao criar cobrança Pix"
+        );
+      setPixData({
+        base64: data.pixInformation?.base64,
+        code: data.pixInformation?.qrCode,
+        image: data.pixInformation?.image,
+      });
+    } catch (err: any) {
+      setError(err.message || "Erro ao gerar cobrança Pix. Tente novamente.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-light flex flex-col">
@@ -140,17 +222,55 @@ const IOFPayment = () => {
 
               {/* Botão de pagamento */}
               <div className="mt-10 flex flex-col items-center space-y-4">
-                <Button
-                  className="bg-green-primary hover:bg-green-dark text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 w-full max-w-sm"
-                  size="lg"
-                >
-                  <Lock className="w-5 h-5 mr-3" />
-                  PAGAR IOF
-                </Button>
-
-                <p className="text-sm text-gray-500 text-center">
-                  🔒 Pagamento 100% seguro e protegido
-                </p>
+                {!pixData && (
+                  <Button
+                    className="bg-green-primary hover:bg-green-dark text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 w-full max-w-sm"
+                    size="lg"
+                    onClick={handlePixPayment}
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      <span className="flex items-center">
+                        <Lock className="w-5 h-5 mr-3 animate-spin" />
+                        Gerando Pix...
+                      </span>
+                    ) : (
+                      <>
+                        <Lock className="w-5 h-5 mr-3" />
+                        PAGAR IOF
+                      </>
+                    )}
+                  </Button>
+                )}
+                {error && (
+                  <p className="text-red-500 text-sm text-center">{error}</p>
+                )}
+                {pixData && (
+                  <div className="w-full max-w-xs mx-auto bg-green-50 rounded-xl p-4 flex flex-col items-center space-y-3 border border-green-200">
+                    <p className="text-green-800 font-semibold text-center">
+                      Escaneie o QR Code ou copie o código Pix para pagar o IOF:
+                    </p>
+                    {pixData.base64 ? (
+                      <img
+                        src={`data:image/png;base64,${pixData.base64}`}
+                        alt="QR Code Pix"
+                        className="w-48 h-48 mx-auto rounded-lg border"
+                      />
+                    ) : pixData.image ? (
+                      <img
+                        src={pixData.image}
+                        alt="QR Code Pix"
+                        className="w-48 h-48 mx-auto rounded-lg border"
+                      />
+                    ) : null}
+                    <div className="bg-white rounded p-2 text-xs break-all border border-green-200 text-green-900 select-all">
+                      {pixData.code}
+                    </div>
+                    <p className="text-green-700 text-xs text-center">
+                      Após o pagamento, a liberação será automática.
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -63,3 +63,65 @@ Faça o deploy usando a plataforma de sua preferência (Vercel, Netlify, etc).
 Sim! Basta configurar o domínio na plataforma de deploy escolhida.
 
 Leia mais na documentação da sua plataforma de deploy.
+
+## Integração com API de criação de Pix (Axipayments)
+
+Este projeto integra a geração de cobranças Pix via API da Axipayments. O fluxo é o seguinte:
+
+1. O usuário preenche um formulário de simulação de empréstimo em 3 etapas.
+2. Após o envio dos dados, o backend (`/api/pix/route.ts`) faz uma requisição para a API da Axipayments para criar uma cobrança Pix.
+3. A resposta da API retorna o QR Code (imagem em base64) e o código "copia e cola" do Pix, que são exibidos para o usuário pagar.
+
+### Configuração das chaves da API
+
+Crie um arquivo `.env.local` na raiz do projeto e adicione suas chaves:
+
+```
+AXIPAY_PUBLIC_KEY=sua_public_key
+AXIPAY_SECRET_KEY=sua_secret_key
+```
+
+### Exemplo de payload enviado para a Axipayments
+
+```json
+{
+  "identifier": "12345678909-1712345678901",
+  "amount": 17.9,
+  "client": {
+    "name": "Nome do Cliente",
+    "email": "email@exemplo.com",
+    "phone": "11999999999",
+    "document": "12345678909"
+  },
+  "products": [
+    {
+      "id": "emprestimo",
+      "name": "Simulação de Empréstimo",
+      "quantity": 1,
+      "price": 17.9
+    }
+  ],
+  "dueDate": "2025-07-02",
+  "metadata": { "origem": "formulario-emprestimo" },
+  "callbackUrl": "https://sua.api.com/pix/callback/teste"
+}
+```
+
+### Exemplo de resposta da Axipayments
+
+```json
+{
+  "pix": {
+    "code": "000201...",
+    "base64": "iVBORw0KGgoAAA..."
+  },
+  ...
+}
+```
+
+- O campo `pix.code` é o código "copia e cola".
+- O campo `pix.base64` é a imagem do QR Code em base64.
+
+### Exibição no frontend
+
+O frontend consome a rota `/api/pix`, recebe os dados e exibe o QR Code e o código Pix para o usuário realizar o pagamento.
