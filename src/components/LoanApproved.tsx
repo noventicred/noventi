@@ -19,7 +19,9 @@ import SecurityFooter from "@/components/SecurityFooter";
 const LoanApproved = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { loanValue, personalData, loanDetails } = location.state || {};
+  const { loanValue, personalData, loanDetails, contactData } =
+    location.state || {};
+  console.log("DEBUG LoanApproved: contactData", contactData);
 
   const [bankData, setBankData] = useState({
     bankName: "",
@@ -91,6 +93,7 @@ const LoanApproved = () => {
         personalData,
         bankData,
         loanDetails: details,
+        contactData,
       },
     });
   };

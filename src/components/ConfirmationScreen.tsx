@@ -8,7 +8,9 @@ import SecurityFooter from "@/components/SecurityFooter";
 const ConfirmationScreen = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { loanValue, personalData, bankData } = location.state || {};
+  const { loanValue, personalData, bankData, contactData } =
+    location.state || {};
+  console.log("DEBUG ConfirmationScreen: contactData", contactData);
 
   useEffect(() => {
     // Redirecionar automaticamente após 3 segundos para a validação bancária
@@ -18,12 +20,13 @@ const ConfirmationScreen = () => {
           loanValue,
           personalData,
           bankData,
+          contactData,
         },
       });
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, [navigate, loanValue, personalData, bankData]);
+  }, [navigate, loanValue, personalData, bankData, contactData]);
 
   return (
     <div className="min-h-screen bg-gray-light flex flex-col">

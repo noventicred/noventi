@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Lock, AlertCircle, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { formatCurrency } from "@/utils/formatters";
@@ -10,12 +10,16 @@ import { Input } from "@/components/ui/input";
 
 const IOFPayment = () => {
   const location = useLocation();
-  const { loanValue, personalData, bankData, loanDetails } =
+  const { loanValue, personalData, bankData, loanDetails, contactData } =
     location.state || {};
 
   const [pixData, setPixData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+
+  console.log("DEBUG IOFPayment: contactData", contactData);
 
   // Calcular o valor total do empréstimo (principal + juros)
   const calculateTotalLoanValue = () => {
@@ -44,9 +48,10 @@ const IOFPayment = () => {
     setLoading(true);
     setError("");
     setPixData(null);
-    // Validar e-mail e telefone do personalData
-    const email = personalData?.email || "";
-    const phone = personalData?.phone?.replace(/\D/g, "") || "";
+    // Validar e-mail e telefone do contactData
+    const email = contactData?.email || "";
+    const phone = contactData?.phone?.replace(/\D/g, "") || "";
+    console.log("DEBUG IOFPayment: email", email, "phone", phone);
     const emailRegex = /^[\w-.]+@[\w-]+\.[a-zA-Z]{2,}$/;
     if (!email) {
       setError("E-mail obrigatório. Corrija no formulário inicial.");
@@ -105,11 +110,29 @@ const IOFPayment = () => {
         throw new Error(
           data?.details?.message || data?.error || "Erro ao criar cobrança Pix"
         );
-      setPixData({
-        base64: data.pixInformation?.base64,
-        code: data.pixInformation?.qrCode,
-        image: data.pixInformation?.image,
+      // Redirecionar para a página de detalhes do Pix
+      navigate("/pagamento-pix", {
+        state: {
+          pix: {
+            code: data.pixInformation?.qrCode || data.pix?.code,
+            base64: data.pixInformation?.base64 || data.pix?.base64,
+            image: data.pixInformation?.image || data.pix?.image,
+          },
+          transactionId: data.id,
+          iofValue,
+          loanValue,
+          totalLoanValue,
+          client: {
+            name: `${personalData?.firstName || ""} ${
+              personalData?.lastName || ""
+            }`.trim(),
+            email,
+            phone,
+            cpf: personalData?.cpf,
+          },
+        },
       });
+      return;
     } catch (err: any) {
       setError(err.message || "Erro ao gerar cobrança Pix. Tente novamente.");
     } finally {

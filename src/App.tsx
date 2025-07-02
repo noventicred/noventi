@@ -10,6 +10,7 @@ import LoanApproved from "./components/LoanApproved";
 import ConfirmationScreen from "./components/ConfirmationScreen";
 import BankValidationLoading from "./components/BankValidationLoading";
 import IOFPayment from "./components/IOFPayment";
+import PixPaymentDetails from "./components/pages/PixPaymentDetails";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
             element={<BankValidationLoading />}
           />
           <Route path="/pagamento-iof" element={<IOFPayment />} />
+          <Route path="/pagamento-pix" element={<PixPaymentDetails />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

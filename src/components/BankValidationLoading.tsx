@@ -16,7 +16,9 @@ const BankValidationLoading = () => {
   const currentStep = totalSteps - Math.ceil(countdown / (8 / totalSteps));
   const navigate = useNavigate();
   const location = useLocation();
-  const { loanValue, personalData, bankData } = location.state || {};
+  const { loanValue, personalData, bankData, contactData } =
+    location.state || {};
+  console.log("DEBUG BankValidationLoading: contactData", contactData);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -28,6 +30,7 @@ const BankValidationLoading = () => {
               loanValue,
               personalData,
               bankData,
+              contactData,
             },
           });
           return 0;
@@ -36,7 +39,7 @@ const BankValidationLoading = () => {
       });
     }, 1000);
     return () => clearInterval(timer);
-  }, [navigate, loanValue, personalData, bankData]);
+  }, [navigate, loanValue, personalData, bankData, contactData]);
 
   return (
     <div className="min-h-screen bg-gray-light flex flex-col">

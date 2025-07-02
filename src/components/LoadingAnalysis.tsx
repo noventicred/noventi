@@ -9,11 +9,12 @@ const LoadingAnalysis = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { loanValue, personalData, contactData } = location.state || {};
+  console.log("DEBUG LoadingAnalysis: contactData", contactData);
 
   const steps = [
     "Verificando CPF",
     "Consultando score de crédito",
-    "Analisando histórico financeiro"
+    "Analisando histórico financeiro",
   ];
   const currentStep = 3 - Math.ceil(countdown / (10 / steps.length));
 
