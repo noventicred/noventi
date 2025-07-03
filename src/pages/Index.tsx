@@ -190,160 +190,152 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Seção Taxas e Condições */}
-      <section className="py-12 bg-green-50">
+      {/* Seção Taxas e Condições + Transparência total para sua escolha (unificadas) */}
+      <section className="py-12 bg-gradient-to-br from-green-primary to-green-dark text-white">
         <div className="container mx-auto px-2 xs:px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <span className="block text-green-primary font-semibold tracking-wide mb-2 text-base sm:text-lg uppercase">
+            <span className="block text-green-100 font-semibold tracking-wide mb-2 text-base sm:text-lg uppercase">
               Taxas e Condições
             </span>
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-green-dark mb-4">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-white mb-4">
               Transparência e Facilidade para Você
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Card 1 */}
-            <div className="flex items-center bg-white border border-green-primary/30 rounded-2xl shadow-sm p-5 hover:shadow-lg transition-shadow">
-              <div className="flex-shrink-0 w-12 h-12 bg-green-primary/10 rounded-lg flex items-center justify-center mr-4">
-                <Plus className="w-7 h-7 text-green-primary" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            {/* Cards de Taxas e Condições */}
+            <div className="flex items-center bg-white/10 border border-green-100/30 rounded-2xl shadow-sm p-5 hover:shadow-lg transition-shadow">
+              <div className="flex-shrink-0 w-12 h-12 bg-green-primary/20 rounded-lg flex items-center justify-center mr-4">
+                <Plus className="w-7 h-7 text-green-100" />
               </div>
               <div>
-                <h3 className="font-bold text-green-dark text-lg mb-1">
+                <h3 className="font-bold text-white text-lg mb-1">
                   Taxas a partir de 1,35% a.m.
                 </h3>
-                <p className="text-gray-700 text-sm">
+                <p className="text-green-50 text-sm">
                   Taxas personalizadas conforme seu perfil e modalidade
                   escolhida.
                 </p>
               </div>
             </div>
-            {/* Card 2 */}
-            <div className="flex items-center bg-white border border-green-primary/30 rounded-2xl shadow-sm p-5 hover:shadow-lg transition-shadow">
-              <div className="flex-shrink-0 w-12 h-12 bg-green-primary/10 rounded-lg flex items-center justify-center mr-4">
-                <Check className="w-7 h-7 text-green-primary" />
+            <div className="flex items-center bg-white/10 border border-green-100/30 rounded-2xl shadow-sm p-5 hover:shadow-lg transition-shadow">
+              <div className="flex-shrink-0 w-12 h-12 bg-green-primary/20 rounded-lg flex items-center justify-center mr-4">
+                <Check className="w-7 h-7 text-green-100" />
               </div>
               <div>
-                <h3 className="font-bold text-green-dark text-lg mb-1">
+                <h3 className="font-bold text-white text-lg mb-1">
                   Aprovação para Negativados
                 </h3>
-                <p className="text-gray-700 text-sm">
+                <p className="text-green-50 text-sm">
                   Análise flexível, mesmo para quem está com restrição no CPF.
                 </p>
               </div>
             </div>
-            {/* Card 3 */}
-            <div className="flex items-center bg-white border border-green-primary/30 rounded-2xl shadow-sm p-5 hover:shadow-lg transition-shadow">
-              <div className="flex-shrink-0 w-12 h-12 bg-green-primary/10 rounded-lg flex items-center justify-center mr-4">
-                <Clock className="w-7 h-7 text-green-primary" />
+            <div className="flex items-center bg-white/10 border border-green-100/30 rounded-2xl shadow-sm p-5 hover:shadow-lg transition-shadow">
+              <div className="flex-shrink-0 w-12 h-12 bg-green-primary/20 rounded-lg flex items-center justify-center mr-4">
+                <Clock className="w-7 h-7 text-green-100" />
               </div>
               <div>
-                <h3 className="font-bold text-green-dark text-lg mb-1">
+                <h3 className="font-bold text-white text-lg mb-1">
                   Liberação Rápida
                 </h3>
-                <p className="text-gray-700 text-sm">
+                <p className="text-green-50 text-sm">
                   Dinheiro na conta em até 24h após aprovação.
                 </p>
               </div>
             </div>
-            {/* Card 4 */}
-            <div className="flex items-center bg-white border border-green-primary/30 rounded-2xl shadow-sm p-5 hover:shadow-lg transition-shadow">
-              <div className="flex-shrink-0 w-12 h-12 bg-green-primary/10 rounded-lg flex items-center justify-center mr-4">
-                <Lock className="w-7 h-7 text-green-primary" />
+            <div className="flex items-center bg-white/10 border border-green-100/30 rounded-2xl shadow-sm p-5 hover:shadow-lg transition-shadow">
+              <div className="flex-shrink-0 w-12 h-12 bg-green-primary/20 rounded-lg flex items-center justify-center mr-4">
+                <Lock className="w-7 h-7 text-green-100" />
               </div>
               <div>
-                <h3 className="font-bold text-green-dark text-lg mb-1">
+                <h3 className="font-bold text-white text-lg mb-1">
                   Parcelamento Flexível
                 </h3>
-                <p className="text-gray-700 text-sm">
+                <p className="text-green-50 text-sm">
                   Escolha o número de parcelas que cabe no seu bolso.
                 </p>
               </div>
             </div>
-            {/* Card 5 */}
-            <div className="flex items-center bg-white border border-green-primary/30 rounded-2xl shadow-sm p-5 hover:shadow-lg transition-shadow">
-              <div className="flex-shrink-0 w-12 h-12 bg-green-primary/10 rounded-lg flex items-center justify-center mr-4">
-                <Menu className="w-7 h-7 text-green-primary" />
+            <div className="flex items-center bg-white/10 border border-green-100/30 rounded-2xl shadow-sm p-5 hover:shadow-lg transition-shadow">
+              <div className="flex-shrink-0 w-12 h-12 bg-green-primary/20 rounded-lg flex items-center justify-center mr-4">
+                <Menu className="w-7 h-7 text-green-100" />
               </div>
               <div>
-                <h3 className="font-bold text-green-dark text-lg mb-1">
+                <h3 className="font-bold text-white text-lg mb-1">
                   Transparência Total
                 </h3>
-                <p className="text-gray-700 text-sm">
+                <p className="text-green-50 text-sm">
                   Todas as condições são apresentadas antes da contratação.
                 </p>
               </div>
             </div>
-            {/* Card 6 */}
-            <div className="flex items-center bg-white border border-green-primary/30 rounded-2xl shadow-sm p-5 hover:shadow-lg transition-shadow">
-              <div className="flex-shrink-0 w-12 h-12 bg-green-primary/10 rounded-lg flex items-center justify-center mr-4">
-                <X className="w-7 h-7 text-green-primary" />
+            <div className="flex items-center bg-white/10 border border-green-100/30 rounded-2xl shadow-sm p-5 hover:shadow-lg transition-shadow">
+              <div className="flex-shrink-0 w-12 h-12 bg-green-primary/20 rounded-lg flex items-center justify-center mr-4">
+                <X className="w-7 h-7 text-green-100" />
               </div>
               <div>
-                <h3 className="font-bold text-green-dark text-lg mb-1">
+                <h3 className="font-bold text-white text-lg mb-1">
                   Quitação Antecipada
                 </h3>
-                <p className="text-gray-700 text-sm">
+                <p className="text-green-50 text-sm">
                   Pague quando quiser, com desconto nos juros.
                 </p>
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Seção Transparência total para sua escolha */}
-      <section className="py-12 bg-green-50 flex justify-center">
-        <div className="w-full max-w-5xl px-2 xs:px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-green-dark text-center mb-2">
-            Transparência total para sua escolha
-          </h2>
-          <p className="text-green-primary text-center mb-8 text-base sm:text-lg">
-            Veja as principais condições e exemplos antes de contratar
-          </p>
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-8 mb-8">
-            {/* Prazo para pagar */}
-            <div className="flex flex-col items-center flex-1">
-              <Lock className="w-8 h-8 text-green-primary mb-2" />
-              <span className="font-bold text-green-dark text-lg">
-                Prazo para pagar
-              </span>
-              <span className="text-gray-700 text-sm">de 6 a 64 meses</span>
+          {/* Transparência total para sua escolha */}
+          <div className="w-full max-w-5xl mx-auto px-2 xs:px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-white text-center mb-2">
+              Transparência total para sua escolha
+            </h2>
+            <p className="text-green-100 text-center mb-8 text-base sm:text-lg">
+              Veja as principais condições e exemplos antes de contratar
+            </p>
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-8 mb-8">
+              {/* Prazo para pagar */}
+              <div className="flex flex-col items-center flex-1">
+                <Lock className="w-8 h-8 text-green-100 mb-2" />
+                <span className="font-bold text-white text-lg">
+                  Prazo para pagar
+                </span>
+                <span className="text-green-50 text-sm">de 6 a 64 meses</span>
+              </div>
+              {/* CET máximo */}
+              <div className="flex flex-col items-center flex-1">
+                <BarChart2 className="w-8 h-8 text-green-100 mb-2" />
+                <span className="font-bold text-white text-lg">CET máximo</span>
+                <span className="text-green-50 text-sm">18,5% ao ano</span>
+              </div>
+              {/* Pagamento mínimo */}
+              <div className="flex flex-col items-center flex-1">
+                <Clock className="w-8 h-8 text-green-100 mb-2" />
+                <span className="font-bold text-white text-lg">
+                  Pagamento mínimo
+                </span>
+                <span className="text-green-50 text-sm">
+                  60 dias após contratação
+                </span>
+              </div>
             </div>
-            {/* CET máximo */}
-            <div className="flex flex-col items-center flex-1">
-              <BarChart2 className="w-8 h-8 text-green-primary mb-2" />
-              <span className="font-bold text-green-dark text-lg">
-                CET máximo
+            <div className="bg-white/20 border border-green-100/20 rounded-xl px-4 py-5 mb-4 shadow-sm max-w-2xl mx-auto">
+              <span className="block font-bold text-white mb-1">
+                Exemplo prático
               </span>
-              <span className="text-gray-700 text-sm">18,5% ao ano</span>
-            </div>
-            {/* Pagamento mínimo */}
-            <div className="flex flex-col items-center flex-1">
-              <Clock className="w-8 h-8 text-green-primary mb-2" />
-              <span className="font-bold text-green-dark text-lg">
-                Pagamento mínimo
-              </span>
-              <span className="text-gray-700 text-sm">
-                60 dias após contratação
+              <span className="text-green-50 text-sm">
+                Se você contratar <span className="font-bold">R$ 10.000</span>,
+                pode pagar em 24 parcelas de{" "}
+                <span className="font-bold">R$ 491,00</span>. O valor total pago
+                será de <span className="font-bold">R$ 11.774,00</span>, com
+                juros de 1,35% ao mês.
               </span>
             </div>
+            <p className="text-xs text-green-50 text-center max-w-2xl mx-auto">
+              Permitido apenas para empréstimos pessoais com pagamento integral
+              em 60 dias ou mais. Consulte todas as condições antes de
+              contratar.
+            </p>
           </div>
-          <div className="bg-white/80 border border-green-primary/20 rounded-xl px-4 py-5 mb-4 shadow-sm max-w-2xl mx-auto">
-            <span className="block font-bold text-green-dark mb-1">
-              Exemplo prático
-            </span>
-            <span className="text-gray-700 text-sm">
-              Se você contratar <span className="font-bold">R$ 10.000</span>,
-              pode pagar em 24 parcelas de{" "}
-              <span className="font-bold">R$ 491,00</span>. O valor total pago
-              será de <span className="font-bold">R$ 11.774,00</span>, com juros
-              de 1,35% ao mês.
-            </span>
-          </div>
-          <p className="text-xs text-gray-600 text-center max-w-2xl mx-auto">
-            Permitido apenas para empréstimos pessoais com pagamento integral em
-            60 dias ou mais. Consulte todas as condições antes de contratar.
-          </p>
         </div>
       </section>
 
