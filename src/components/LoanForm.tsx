@@ -78,7 +78,10 @@ const LoanForm = () => {
   };
 
   return (
-    <section id="formulario" className="py-10 xs:py-12 sm:py-16 bg-gray-light">
+    <section
+      id="formulario"
+      className="py-10 xs:py-12 sm:py-16 bg-gray-light relative overflow-visible"
+    >
       <div className="container mx-auto px-2 xs:px-4">
         <div className="max-w-2xl mx-auto">
           <div

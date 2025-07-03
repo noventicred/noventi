@@ -20,10 +20,28 @@ import {
   BarChart2,
   CheckCircle2,
 } from "lucide-react";
+import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Index = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.state && location.state.scrollToForm) {
+      const element = document.getElementById("formulario");
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+      // Limpa o estado para evitar scrolls futuros indesejados
+      navigate("/", { replace: true, state: {} });
+    }
+  }, [location, navigate]);
+
   return (
-    <div className="min-h-screen">
+    <>
       <Header />
       <Hero />
       <LoanForm />
@@ -341,7 +359,7 @@ const Index = () => {
 
       <FAQ />
       <Footer />
-    </div>
+    </>
   );
 };
 
