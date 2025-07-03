@@ -2,19 +2,20 @@ import { Phone, Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer id="contato" className="bg-green-dark text-white py-8 sm:py-12">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+    <footer
+      id="contato"
+      className="bg-green-dark text-white py-6 xs:py-8 sm:py-12"
+    >
+      <div className="container mx-auto px-2 xs:px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 xs:gap-6 sm:gap-8">
           <div className="space-y-3 sm:space-y-4">
             <div className="flex items-center">
-              <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-primary rounded-lg mr-2 sm:mr-3 flex items-center justify-center">
-                <span className="text-white font-bold text-sm sm:text-lg">
-                  $
-                </span>
-              </div>
-              <span className="text-xl sm:text-2xl font-bold">
-                EmpréstimoPro
-              </span>
+              <img
+                src="/LOGO.svg"
+                alt="Logo NoventiCred"
+                className="h-10 w-auto mr-2 sm:mr-3"
+              />
+              <span className="text-xl sm:text-2xl font-bold">NoventiCred</span>
             </div>
             <p className="text-white/80 leading-relaxed text-sm sm:text-base">
               Sua solução em empréstimos pessoais com as melhores condições do
@@ -54,7 +55,7 @@ const Footer = () => {
               <div className="flex items-center space-x-2 sm:space-x-3">
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-green-primary flex-shrink-0" />
                 <span className="text-white/80 text-sm sm:text-base break-all">
-                  contato@emprestimopro.com
+                  contato@noventicred.com
                 </span>
               </div>
               <div className="flex items-center space-x-2 sm:space-x-3">
@@ -67,9 +68,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-white/20 mt-6 sm:mt-8 pt-6 sm:pt-8 text-center">
-          <p className="text-white/60 text-xs sm:text-sm">
-            © 2024 EmpréstimoPro. Todos os direitos reservados.
+        <div className="border-t border-white/20 mt-4 xs:mt-6 sm:mt-8 pt-4 xs:pt-6 sm:pt-8 text-center">
+          <p className="text-white/60 text-xs xs:text-sm sm:text-base">
+            © 2024 NoventiCred. Todos os direitos reservados.
           </p>
         </div>
       </div>

@@ -78,10 +78,13 @@ const LoanForm = () => {
   };
 
   return (
-    <section id="formulario" className="py-16 bg-gray-light">
-      <div className="container mx-auto px-4">
+    <section id="formulario" className="py-10 xs:py-12 sm:py-16 bg-gray-light">
+      <div className="container mx-auto px-2 xs:px-4">
         <div className="max-w-2xl mx-auto">
-          <div ref={formRef} className="bg-white rounded-2xl shadow-xl p-8">
+          <div
+            ref={formRef}
+            className="bg-white rounded-2xl shadow-xl p-4 xs:p-6 sm:p-8"
+          >
             {renderProgressBar()}
 
             {currentStep === 1 && (

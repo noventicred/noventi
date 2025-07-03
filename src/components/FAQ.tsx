@@ -42,18 +42,18 @@ const FAQ = () => {
   };
 
   return (
-    <section className="py-12 sm:py-16 bg-gray-light">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-green-dark mb-3 sm:mb-4">
+    <section className="py-8 xs:py-12 sm:py-16 bg-gray-light">
+      <div className="container mx-auto px-2 xs:px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-6 xs:mb-8 sm:mb-12">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-green-dark mb-2 xs:mb-3 sm:mb-4">
             Dúvidas Frequentes
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600">
+          <p className="text-base xs:text-lg sm:text-xl text-gray-600">
             Tire suas dúvidas sobre nosso empréstimo pessoal
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto space-y-3 sm:space-y-4">
+        <div className="max-w-3xl mx-auto space-y-2 xs:space-y-3 sm:space-y-4">
           {faqs.map((faq, index) => (
             <div
               key={index}

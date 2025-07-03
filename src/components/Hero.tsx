@@ -3,18 +3,18 @@ import { CheckCircle2, Clock, Shield, CreditCard } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="bg-gradient-to-br from-green-primary to-green-dark text-white py-12 sm:py-16 lg:py-20">
+    <section className="bg-gradient-to-br from-green-primary to-green-dark text-white py-8 sm:py-16 lg:py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           <div className="space-y-6 sm:space-y-8">
             <div className="space-y-3 sm:space-y-4">
-              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight">
+              <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight">
                 Empréstimo Pessoal
                 <span className="block text-white/90">
                   Rápido, Seguro e Sem Burocracia
                 </span>
               </h1>
-              <p className="text-lg sm:text-xl text-white/90 leading-relaxed">
+              <p className="text-base xs:text-lg sm:text-xl text-white/90 leading-relaxed">
                 Conquiste seus objetivos com facilidade: solicite seu empréstimo
                 em poucos cliques, tenha resposta em menos de 1 minuto e
                 aproveite uma das maiores taxas de aprovação do Brasil. Dinheiro
@@ -45,7 +45,7 @@ const Hero = () => {
 
             <Button
               size="lg"
-              className="bg-white text-green-dark hover:bg-gray-100 text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 rounded-xl font-bold shadow-lg w-full sm:w-auto"
+              className="bg-white text-green-dark hover:bg-gray-100 text-base xs:text-lg sm:text-xl px-4 xs:px-6 sm:px-8 py-3 xs:py-4 sm:py-6 rounded-xl font-bold shadow-lg w-full sm:w-auto"
               onClick={() => {
                 const element = document.getElementById("formulario");
                 element?.scrollIntoView({ behavior: "smooth" });
@@ -55,9 +55,9 @@ const Hero = () => {
             </Button>
           </div>
 
-          <div className="lg:pl-12">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 space-y-4 sm:space-y-6">
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
+          <div className="lg:pl-12 mt-8 lg:mt-0">
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 xs:p-6 sm:p-8 space-y-4 sm:space-y-6">
+              <h3 className="text-lg xs:text-xl sm:text-2xl font-bold text-white mb-2 xs:mb-4 sm:mb-6">
                 Principais Vantagens:
               </h3>
 

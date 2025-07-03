@@ -108,7 +108,7 @@ const StepThree = ({
         </div>
       </div>
 
-      <div className="flex justify-between max-w-md mx-auto">
+      <div className="flex flex-col sm:flex-row justify-between gap-3 max-w-md mx-auto">
         <Button
           onClick={onPrevious}
           variant="outline"
