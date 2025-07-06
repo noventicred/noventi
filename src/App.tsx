@@ -16,6 +16,7 @@ import PixPaymentDetails from "./components/pages/PixPaymentDetails";
 import Sobre from "./pages/Sobre";
 import TiposEmprestimos from "./pages/TiposEmprestimos";
 import FAQPage from "./pages/FAQ";
+import Contato from "./pages/Contato";
 
 const queryClient = new QueryClient();
 
@@ -102,6 +103,14 @@ const AnimatedRoutes = () => {
           element={
             <PageTransition>
               <FAQPage />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/contato"
+          element={
+            <PageTransition>
+              <Contato />
             </PageTransition>
           }
         />

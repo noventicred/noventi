@@ -64,7 +64,7 @@ const Header = () => {
             FAQ
           </a>
           <a
-            href="#contato"
+            href="/contato"
             className="text-gray-600 hover:text-green-dark transition-colors"
           >
             Contato
@@ -138,7 +138,7 @@ const Header = () => {
                   FAQ
                 </a>
                 <a
-                  href="#contato"
+                  href="/contato"
                   className="text-lg md:text-xl text-green-dark font-semibold rounded-lg px-4 py-4 text-left hover:bg-green-50 hover:text-green-primary transition-colors focus:bg-green-100 focus:text-green-dark outline-none"
                   onClick={() => setMobileOpen(false)}
                 >

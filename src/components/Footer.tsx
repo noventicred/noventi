@@ -36,10 +36,26 @@ const Footer = () => {
           <div className="space-y-3 sm:space-y-4">
             <h3 className="text-lg sm:text-xl font-bold">Empresa</h3>
             <ul className="space-y-1 sm:space-y-2 text-white/80 text-sm sm:text-base">
-              <li>Sobre Nós</li>
-              <li>Como Funciona</li>
-              <li>Segurança</li>
-              <li>Termos de Uso</li>
+              <li>
+                <a href="/sobre" className="hover:text-green-primary transition-colors">
+                  Sobre Nós
+                </a>
+              </li>
+              <li>
+                <a href="/tipos-emprestimos" className="hover:text-green-primary transition-colors">
+                  Tipos de Empréstimos
+                </a>
+              </li>
+              <li>
+                <a href="/faq" className="hover:text-green-primary transition-colors">
+                  FAQ
+                </a>
+              </li>
+              <li>
+                <a href="/contato" className="hover:text-green-primary transition-colors">
+                  Contato
+                </a>
+              </li>
             </ul>
           </div>
 
