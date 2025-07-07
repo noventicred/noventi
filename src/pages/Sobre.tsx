@@ -37,42 +37,106 @@ const Sobre = () => {
     <>
       <Header />
       <main className="flex-1">
-        {/* Hero institucional */}
-        <section className="py-20 bg-gradient-to-br from-green-primary to-green-dark text-white relative overflow-hidden">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
-            <div className="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left">
-              <h1 className="text-4xl sm:text-6xl font-extrabold mb-4 leading-tight drop-shadow-lg">
-                Sobre a NoventiCred
+        {/* Hero institucional melhorado */}
+        <section className="py-24 bg-gradient-to-br from-green-primary via-green-dark to-green-primary text-white relative overflow-hidden">
+          {/* Elementos decorativos de fundo */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-10 left-20 w-40 h-40 bg-white rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-20 right-20 w-32 h-32 bg-green-100 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            <div className="absolute top-1/2 left-1/4 w-20 h-20 bg-white rounded-full blur-2xl animate-pulse delay-500"></div>
+          </div>
+          
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-semibold mb-6">
+                <span className="w-2 h-2 bg-white rounded-full mr-3 animate-pulse"></span>
+                Conheça Nossa História
+              </div>
+              
+              <h1 className="text-5xl sm:text-7xl font-extrabold mb-6 leading-tight">
+                Sobre a{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-green-100">
+                  NoventiCred
+                </span>
               </h1>
-              <p className="text-green-100 text-lg sm:text-2xl font-medium mb-6 max-w-2xl">
+              
+              <p className="text-green-100 text-xl sm:text-2xl font-medium mb-12 max-w-4xl mx-auto leading-relaxed">
                 Transformando sonhos em conquistas financeiras com tecnologia,
                 transparência e atendimento humano.
               </p>
-              <div className="flex flex-wrap gap-6 justify-center md:justify-start">
-                {stats.map((stat, i) => (
-                  <div
-                    key={i}
-                    className="bg-white/10 rounded-xl px-6 py-4 flex flex-col items-center min-w-[120px] shadow-md hover:scale-105 transition-all duration-300"
-                  >
-                    {stat.icon}
-                    <span className="text-2xl font-bold text-white mt-2">
+            </div>
+
+            {/* Grid de estatísticas melhorado */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-6xl mx-auto">
+              {stats.map((stat, i) => (
+                <div
+                  key={i}
+                  className="group relative bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-sm rounded-3xl p-6 lg:p-8 flex flex-col items-center text-center shadow-2xl hover:shadow-3xl transform hover:-translate-y-3 hover:scale-105 transition-all duration-500 border border-white/20"
+                >
+                  {/* Efeito de brilho no hover */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity duration-500"></div>
+                  
+                  <div className="relative z-10 w-full">
+                    <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-white/30 to-white/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      {stat.icon}
+                    </div>
+                    
+                    <span className="block text-3xl lg:text-4xl font-extrabold text-white mb-2 group-hover:scale-110 transition-transform duration-300">
                       {stat.value}
                     </span>
-                    <span className="text-green-100 text-sm">{stat.label}</span>
+                    
+                    <span className="text-green-100 text-sm lg:text-base font-medium leading-tight">
+                      {stat.label}
+                    </span>
                   </div>
-                ))}
+                  
+                  {/* Decoração adicional */}
+                  <div className="absolute -top-2 -right-2 w-4 h-4 bg-white/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              ))}
+            </div>
+
+            {/* Seção da imagem redesenhada */}
+            <div className="mt-20 flex justify-center">
+              <div className="relative group max-w-2xl">
+                {/* Moldura com gradiente */}
+                <div className="absolute -inset-6 bg-gradient-to-r from-white/30 via-green-100/30 to-white/30 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
+                
+                <div className="relative bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-sm rounded-3xl p-4 border border-white/30">
+                  <img
+                    src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80"
+                    alt="Equipe NoventiCred trabalhando em escritório moderno"
+                    className="w-full h-64 lg:h-80 object-cover rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
+                  />
+                  
+                  {/* Badge sobre a imagem */}
+                  <div className="absolute -top-4 -right-4 bg-gradient-to-r from-green-primary to-green-dark text-white px-6 py-3 rounded-full text-sm font-bold shadow-xl transform rotate-12 group-hover:rotate-6 transition-transform duration-300">
+                    <span className="flex items-center gap-2">
+                      ⭐ Empresa Confiável
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="flex-1 flex justify-center items-center relative">
-              <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-green-100 bg-white/10">
-                <img
-                  src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80"
-                  alt="Equipe NoventiCred"
-                  className="w-full max-w-md h-80 object-cover"
-                />
-              </div>
-              {/* Elemento decorativo */}
-              <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-green-100/20 blur-2xl z-0" />
+
+            {/* CTA section */}
+            <div className="text-center mt-16">
+              <p className="text-green-100 text-lg mb-8 max-w-2xl mx-auto">
+                Há mais de 10 anos ajudando brasileiros a realizarem seus sonhos com crédito responsável e atendimento humanizado.
+              </p>
+              
+              <button className="group relative bg-white text-green-dark hover:bg-green-50 font-bold rounded-2xl px-10 py-4 text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center gap-3 mx-auto">
+                <span>Conheça Nossos Serviços</span>
+                <svg
+                  className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
           </div>
         </section>

@@ -13,12 +13,12 @@ const FAQ = () => {
     {
       question: "Quanto tempo demora para aprovação?",
       answer:
-        "Nossa análise é feita em tempo real. Você recebe a resposta em até 5 minutos após enviar a solicitação.",
+        "Nossa análise é feita em tempo real. Você recebe a resposta em até 1 minuto após enviar a solicitação.",
     },
     {
       question: "Qual a taxa de juros?",
       answer:
-        "Nossas taxas começam a partir de 1,99% ao mês, variando conforme seu perfil.",
+        "Nossas taxas começam a partir de 1,35% ao mês, variando conforme seu perfil.",
     },
     {
       question: "Preciso ter conta no banco?",

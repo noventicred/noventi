@@ -140,70 +140,121 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Seção Sobre a NoventiCred - institucional premium alinhada ao grid, copy e UX/UI aprimorados */}
-      <section className="py-20 bg-white border-b border-green-100 animate-fade-in">
-        <div className="container mx-auto px-2 xs:px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
-          {/* Imagem empresarial */}
-          <div className="flex-shrink-0 flex justify-center items-center w-full md:w-1/2">
-            <img
-              src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80"
-              alt="Equipe NoventiCred em reunião"
-              className="w-full max-w-md h-72 object-cover rounded-2xl shadow-xl bg-white"
-            />
-          </div>
-          {/* Conteúdo institucional */}
-          <div className="flex flex-col justify-center w-full md:w-1/2">
-            <h2 className="text-3xl sm:text-5xl font-extrabold mb-3 text-green-dark leading-tight">
-              Realize seus sonhos com a{" "}
-              <span className="text-green-primary">NoventiCred</span>
-            </h2>
-            <p className="text-green-primary text-lg font-semibold mb-2">
-              Crédito rápido, seguro e feito para você.
-            </p>
-            <p className="text-gray-700 text-base sm:text-lg mb-7 max-w-xl">
-              Somos especialistas em transformar planos em conquistas. Com
-              atendimento humano, taxas justas e agilidade, ajudamos você a
-              tirar seus projetos do papel sem burocracia.
-            </p>
-            <div className="flex flex-wrap gap-8 mb-8">
-              <div className="flex flex-col items-center min-w-[100px] bg-green-50 rounded-xl py-4 px-3 shadow-sm">
-                <Clock className="w-9 h-9 text-green-primary mb-1" />
-                <span className="text-xl font-bold text-green-dark">
-                  10+ anos
-                </span>
-                <span className="text-xs text-gray-600 text-center">
-                  de experiência no mercado
-                </span>
-              </div>
-              <div className="flex flex-col items-center min-w-[100px] bg-green-50 rounded-xl py-4 px-3 shadow-sm">
-                <CheckCircle2 className="w-9 h-9 text-green-primary mb-1" />
-                <span className="text-xl font-bold text-green-dark">
-                  98% aprovação
-                </span>
-                <span className="text-xs text-gray-600 text-center">
-                  clientes satisfeitos
-                </span>
-              </div>
-              <div className="flex flex-col items-center min-w-[100px] bg-green-50 rounded-xl py-4 px-3 shadow-sm">
-                <UserCheck className="w-9 h-9 text-green-primary mb-1" />
-                <span className="text-xl font-bold text-green-dark">3h</span>
-                <span className="text-xs text-gray-600 text-center">
-                  dinheiro na conta
-                </span>
+      {/* Seção Sobre a NoventiCred - Design Premium Melhorado */}
+      <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-green-50 relative overflow-hidden">
+        {/* Elementos decorativos de fundo */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-green-primary rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-green-primary rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto px-2 xs:px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            {/* Imagem empresarial com efeitos melhorados */}
+            <div className="flex-shrink-0 flex justify-center items-center w-full lg:w-1/2 relative">
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-r from-green-primary to-green-dark rounded-3xl blur opacity-20 group-hover:opacity-30 transition duration-500"></div>
+                <img
+                  src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80"
+                  alt="Equipe NoventiCred em reunião"
+                  className="relative w-full max-w-lg h-80 object-cover rounded-3xl shadow-2xl transform group-hover:scale-105 transition duration-500"
+                />
+                {/* Badge decorativo */}
+                <div className="absolute -top-4 -right-4 bg-green-primary text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                  ✓ Confiável
+                </div>
               </div>
             </div>
-            <button className="bg-green-primary hover:bg-green-dark text-white font-semibold rounded-xl px-8 py-3 text-base shadow-md transition-colors flex items-center gap-2 w-full sm:w-fit group">
-              Simule seu crédito agora
-              <svg
-                className="w-5 h-5 group-hover:translate-x-1 transition-transform"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </button>
+
+            {/* Conteúdo institucional melhorado */}
+            <div className="flex flex-col justify-center w-full lg:w-1/2 space-y-6">
+              <div className="space-y-4">
+                <div className="inline-flex items-center px-4 py-2 bg-green-100 text-green-dark rounded-full text-sm font-semibold">
+                  <span className="w-2 h-2 bg-green-primary rounded-full mr-2 animate-pulse"></span>
+                  Especialistas em Crédito
+                </div>
+
+                <h2 className="text-4xl sm:text-6xl font-extrabold text-green-dark leading-tight">
+                  Realize seus sonhos com a{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-primary to-green-dark">
+                    NoventiCred
+                  </span>
+                </h2>
+
+                <p className="text-xl font-semibold text-green-primary mb-3">
+                  Crédito rápido, seguro e feito para você.
+                </p>
+
+                <p className="text-gray-700 text-lg leading-relaxed max-w-2xl">
+                  Somos especialistas em transformar planos em conquistas. Com
+                  atendimento humano, taxas justas e agilidade, ajudamos você a
+                  tirar seus projetos do papel sem burocracia.
+                </p>
+              </div>
+
+              {/* Cards de estatísticas melhorados */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border border-green-100">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-14 h-14 bg-gradient-to-r from-green-primary to-green-dark rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <Clock className="w-7 h-7 text-white" />
+                    </div>
+                    <span className="text-2xl font-bold text-green-dark mb-1">
+                      10+ anos
+                    </span>
+                    <span className="text-sm text-gray-600 leading-tight">
+                      de experiência no mercado
+                    </span>
+                  </div>
+                </div>
+
+                <div className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border border-green-100">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-14 h-14 bg-gradient-to-r from-green-primary to-green-dark rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <CheckCircle2 className="w-7 h-7 text-white" />
+                    </div>
+                    <span className="text-2xl font-bold text-green-dark mb-1">
+                      98% aprovação
+                    </span>
+                    <span className="text-sm text-gray-600 leading-tight">
+                      clientes satisfeitos
+                    </span>
+                  </div>
+                </div>
+
+                <div className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border border-green-100">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-14 h-14 bg-gradient-to-r from-green-primary to-green-dark rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <UserCheck className="w-7 h-7 text-white" />
+                    </div>
+                    <span className="text-2xl font-bold text-green-dark mb-1">
+                      3h
+                    </span>
+                    <span className="text-sm text-gray-600 leading-tight">
+                      dinheiro na conta
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Botão CTA melhorado */}
+              <div className="pt-4">
+                <button className="group relative bg-gradient-to-r from-green-primary to-green-dark hover:from-green-dark hover:to-green-primary text-white font-bold rounded-2xl px-10 py-4 text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center gap-3 w-full sm:w-auto">
+                  <span>Simule seu crédito agora</span>
+                  <svg
+                    className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                  {/* Efeito de brilho */}
+                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 rounded-2xl transition-opacity duration-300"></div>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -257,7 +308,7 @@ const Index = () => {
                   Liberação Rápida
                 </h3>
                 <p className="text-green-50 text-sm">
-                  Dinheiro na conta em até 24h após aprovação.
+                  Dinheiro na conta em até 3h após aprovação.
                 </p>
               </div>
             </div>

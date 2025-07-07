@@ -86,7 +86,7 @@ const Footer = () => {
 
         <div className="border-t border-white/20 mt-4 xs:mt-6 sm:mt-8 pt-4 xs:pt-6 sm:pt-8 text-center">
           <p className="text-white/60 text-xs xs:text-sm sm:text-base">
-            © 2024 NoventiCred. Todos os direitos reservados.
+            © 2025 NoventiCred. Todos os direitos reservados.
           </p>
         </div>
       </div>
