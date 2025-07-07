@@ -51,7 +51,7 @@ async function handler(req, res) {
             },
           ];
 
-    // Payload SIMPLES conforme exemplo do README
+    // PAYLOAD HÍBRIDO: Simples + campo específico exigido
     const payload = {
       identifier,
       amount: Number(amount),
@@ -65,10 +65,19 @@ async function handler(req, res) {
       dueDate,
       metadata: { origem: "formulario-emprestimo" },
       callbackUrl,
+      sale: {
+        payment: {
+          details: {
+            qrcode_text: `Pagamento IOF - NoventiCred - ${
+              client.name || "Cliente"
+            }`,
+          },
+        },
+      },
     };
 
     console.log(
-      "🔍 [DEBUG] Payload SIMPLES para AxiPay:",
+      "🔍 [DEBUG] Payload HÍBRIDO para AxiPay:",
       JSON.stringify(payload, null, 2)
     );
 
