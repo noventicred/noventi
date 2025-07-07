@@ -51,14 +51,28 @@ async function handler(req, res) {
             },
           ];
 
+    // Payload corrigido conforme documentação AxiPayments
     const payload = {
       identifier,
-      amount,
-      client,
+      amount: Number(amount),
+      client: {
+        name: client.name,
+        email: client.email,
+        phone: client.phone,
+        document: client.document,
+      },
       products: productsPayload,
       dueDate,
       metadata: { origem: "formulario-emprestimo" },
       callbackUrl,
+      // Campos obrigatórios para PIX
+      payment: {
+        method: "pix",
+        details: {
+          qrcode_text: `Pagamento IOF - ${client.name || "Cliente"}`,
+          expiration_minutes: 1440, // 24 horas
+        },
+      },
     };
 
     console.log(
