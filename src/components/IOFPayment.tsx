@@ -106,22 +106,19 @@ const IOFPayment = () => {
         body: JSON.stringify(payload),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data?.error || "Erro ao criar cobrança Pix");
-
-      // Verificar se a resposta tem sucesso
-      if (!data.success || !data.pix) {
-        throw new Error("Resposta inválida da API PIX");
-      }
-
+      if (!res.ok)
+        throw new Error(
+          data?.details?.message || data?.error || "Erro ao criar cobrança Pix"
+        );
       // Redirecionar para a página de detalhes do Pix
       navigate("/pagamento-pix", {
         state: {
           pix: {
-            code: data.pix.code,
-            base64: data.pix.base64,
-            image: data.pix.image,
+            code: data.pixInformation?.qrCode || data.pix?.code,
+            base64: data.pixInformation?.base64 || data.pix?.base64,
+            image: data.pixInformation?.image || data.pix?.image,
           },
-          transactionId: data.transaction.id,
+          transactionId: data.id,
           iofValue,
           loanValue,
           totalLoanValue,
