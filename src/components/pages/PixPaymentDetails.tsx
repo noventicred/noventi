@@ -280,29 +280,6 @@ const PixPaymentDetails = () => {
             <br />O pagamento é obrigatório para liberação do seu empréstimo.
           </p>
 
-          {/* Aviso importante - NÃO ATUALIZAR */}
-          <div className="bg-red-50 border-2 border-red-200 rounded-xl p-4 w-full mb-4">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="flex-shrink-0">
-                <AlertCircle className="w-6 h-6 text-red-600" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-red-800 font-bold text-base">
-                  ⚠️ ATENÇÃO: NÃO ATUALIZE ESTA PÁGINA!
-                </h3>
-              </div>
-            </div>
-            <div className="pl-9">
-              <p className="text-red-700 text-sm font-medium">
-                Se você atualizar ou sair desta página, terá que{" "}
-                <strong>reiniciar todo o processo</strong> do empréstimo.
-              </p>
-              <p className="text-red-600 text-xs mt-1">
-                Mantenha esta aba aberta até concluir o pagamento.
-              </p>
-            </div>
-          </div>
-
           {/* Timer e status */}
           <div className="flex flex-col items-center mb-4">
             {status === "pending" && (
