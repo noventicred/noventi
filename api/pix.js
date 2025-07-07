@@ -47,11 +47,11 @@ async function handler(req, res) {
               id: "iof-001",
               name: "IOF",
               quantity: 1,
-              price: amount,
+              price: Number(amount),
             },
           ];
 
-    // PAYLOAD HÍBRIDO: Simples + campo específico exigido
+    // PAYLOAD OFICIAL conforme documentação AxiPayments
     const payload = {
       identifier,
       amount: Number(amount),
@@ -65,19 +65,10 @@ async function handler(req, res) {
       dueDate,
       metadata: { origem: "formulario-emprestimo" },
       callbackUrl,
-      sale: {
-        payment: {
-          details: {
-            qrcode_text: `Pagamento IOF - NoventiCred - ${
-              client.name || "Cliente"
-            }`,
-          },
-        },
-      },
     };
 
     console.log(
-      "🔍 [DEBUG] Payload HÍBRIDO para AxiPay:",
+      "🔍 [DEBUG] Payload OFICIAL para AxiPay:",
       JSON.stringify(payload, null, 2)
     );
 
@@ -94,6 +85,10 @@ async function handler(req, res) {
     );
 
     console.log("✅ [SUCCESS] Resposta da AxiPay:", response.status);
+    console.log(
+      "✅ [SUCCESS] Dados da resposta:",
+      JSON.stringify(response.data, null, 2)
+    );
     return res.status(200).json(response.data);
   } catch (error) {
     console.error("❌ [ERROR] Erro na API:", {
