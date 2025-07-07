@@ -51,7 +51,7 @@ async function handler(req, res) {
             },
           ];
 
-    // Payload corrigido conforme estrutura esperada: sale.payment.details
+    // Payload SIMPLES conforme exemplo do README
     const payload = {
       identifier,
       amount: Number(amount),
@@ -65,20 +65,10 @@ async function handler(req, res) {
       dueDate,
       metadata: { origem: "formulario-emprestimo" },
       callbackUrl,
-      // Estrutura corrigida conforme erro: sale.payment.details
-      sale: {
-        payment: {
-          method: "pix",
-          details: {
-            qrcode_text: `Pagamento IOF - ${client.name || "Cliente"}`,
-            expiration_minutes: 1440, // 24 horas
-          },
-        },
-      },
     };
 
     console.log(
-      "🔍 [DEBUG] Payload para AxiPay:",
+      "🔍 [DEBUG] Payload SIMPLES para AxiPay:",
       JSON.stringify(payload, null, 2)
     );
 
